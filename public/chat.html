@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Open Room Beta Chat</title>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+</head>
+
+<body>
+
+
+  <!-- Message box -->
+  <div class="container" id="chat-box">
+
+    <div class="row" id="chat-window">
+      <!-- Where all the messages get created -->
+      <div class="row" id="output"></div>
+      <!-- Shows if a user is typing -->
+      <div id='feedback'></div>
+
+    </div>
+
+    <!-- Placeholder for a username. -->
+    <input id="name" type="text" placeholder='Your Name'/>
+    <!-- Message Input -->
+    <input id='message' type='text' placeholder='Your message'/>
+    <button class='btn-primary' id='send-message'>Send</button>
+  </div>
+
+
+
+
+
+
+  <!-- Scripts -->
+  <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src="assets/js/chat.js"></script>
+
+</body>
+
+</html>
