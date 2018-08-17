@@ -1,0 +1,132 @@
+html {
+    height:100%;
+    background: linear-gradient(0deg, #dbdbdb, #416b92 55%) no-repeat;
+}
+
+
+#login {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    width: 500px;
+    height: 300px;
+    border: 1px solid #353434;
+    box-shadow: 7px 10px #4d4c4c;
+    border-radius: 15px;
+    }
+
+    
+    /* -----------CONTENTS OF FORM--------------------- */
+    /* CONTAINER DIV */
+    .form-inline {
+        margin: 50px;
+}
+
+.welcome-h2 {
+    text-align: center;
+    font-family: 'Kaushan Script', cursive;
+    font-size: 35px;
+    margin-left: 90px;
+    margin-top: -20px;
+}
+
+#login-form{
+    margin-left:120px;
+    margin-top: -50px;
+}
+
+#login-button{
+    margin-top:-25px;
+}
+
+#userName {
+    width:300px;
+}
+
+/* BUTTON TO ENTER CHAT ROOM */
+.btn-primary {
+    margin-top: 70px;
+    background: #4f80ad;
+}
+
+#help-link {
+    height:1.5em;
+}
+
+/* REGISTER/MORE INFO ----LINK VS GLIPHICON???------- */
+.info {
+    margin-left: 38px;
+    margin-top: 70px;
+}
+
+#remember {
+    height: 1.5em;
+}
+
+#submitThis {
+    margin-top:50px;
+    margin-left: 230px;
+}
+
+/* GLIPHICON INFO BELOW */
+/* .info {
+    UTF+e195
+    &#xe195
+    20 - e
+} */
+
+
+#register-button {
+    display:none; 
+ }
+
+@media screen and (max-width: 400px) {
+html {
+    background: white;
+    }
+
+#help-link{
+    display:none;
+}
+
+.welcome-h2{
+    width:288px;
+    margin-top: -100px;
+}
+
+#login {
+        width: auto;
+        height: auto;
+        border: none; 
+        box-shadow: none;
+    }
+
+#submitThis {
+    margin-left: 98px !important;
+    width: 300px !important;
+}
+
+.form-inline {
+    margin: 80px !important;
+    margin-left:0px !important;
+}
+    
+#userName {
+    width:187px !important;
+    margin-left:35px !important;
+    margin-top:-30px !important;
+    margin-bottom: 30px !important;
+}
+
+#remember {
+    width: 150px !important;
+}
+
+#register-button {
+    width: 300px !important;
+    margin-left:187px;
+    display:block !important;
+    }
+}
