@@ -47,7 +47,6 @@ html {
 
 /* BUTTON TO ENTER CHAT ROOM */
 .btn-primary {
-    margin-top: 70px;
     background: #4f80ad;
 }
 
@@ -66,21 +65,17 @@ html {
 }
 
 #submitThis {
-    margin-top:50px;
-    margin-left: 230px;
+    margin-top:52px;
+    height: 40px;
+    margin-left: 320px;
+    width: 80px;
 }
 
-/* GLIPHICON INFO BELOW */
-/* .info {
-    UTF+e195
-    &#xe195
-    20 - e
-} */
-
-
 #register-button {
-    display:none; 
- }
+    margin-left: -250px;
+    height:50px;
+    margin-top:26px;
+}
 
 @media screen and (max-width: 400px) {
 html {
@@ -105,6 +100,7 @@ html {
 
 #submitThis {
     margin-left: 98px !important;
+    margin-top:80px;
     width: 300px !important;
 }
 
@@ -121,12 +117,13 @@ html {
 }
 
 #remember {
-    width: 150px !important;
+    width: 161px !important;
 }
 
 #register-button {
     width: 300px !important;
     margin-left:187px;
+    margin-top: 80px;
     display:block !important;
     }
 }
