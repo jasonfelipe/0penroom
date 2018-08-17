@@ -112,5 +112,20 @@ html {
     width: 161px !important;
 }
 
+#buttons {
+    margin-left:65px;
+}
+
+#login-button{
+    margin-top: 60px;
+    height:60px;
+    width: 300px;
+}
+
+#register-button {
+    width: 200px;
+    margin-left:48px;
+
+}
 
 }
