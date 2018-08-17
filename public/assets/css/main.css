@@ -17,10 +17,8 @@ html {
     border-radius: 15px;
     }
 
-    
-    /* -----------CONTENTS OF FORM--------------------- */
-    /* CONTAINER DIV */
-    .form-inline {
+
+.form-inline {
         margin: 50px;
 }
 
@@ -37,15 +35,11 @@ html {
     margin-top: -50px;
 }
 
-#login-button{
-    margin-top:-25px;
-}
 
 #userName {
     width:300px;
 }
 
-/* BUTTON TO ENTER CHAT ROOM */
 .btn-primary {
     background: #4f80ad;
 }
@@ -54,7 +48,6 @@ html {
     height:1.5em;
 }
 
-/* REGISTER/MORE INFO ----LINK VS GLIPHICON???------- */
 .info {
     margin-left: 38px;
     margin-top: 70px;
@@ -62,21 +55,26 @@ html {
 
 #remember {
     height: 1.5em;
+    margin-top:10px;
 }
 
-#submitThis {
-    margin-top:52px;
-    height: 40px;
-    margin-left: 320px;
-    width: 80px;
+
+#buttons {
+    margin-left: 130px;
+    margin-top:30px;
+}
+
+#login-button {
+    width:90px;
+    height:40px;
 }
 
 #register-button {
-    margin-left: -250px;
-    height:50px;
-    margin-top:26px;
+    width: 90px;
+    height: 40px;
 }
 
+/* Log in screen for PHONES. */
 @media screen and (max-width: 400px) {
 html {
     background: white;
@@ -98,12 +96,6 @@ html {
         box-shadow: none;
     }
 
-#submitThis {
-    margin-left: 98px !important;
-    margin-top:80px;
-    width: 300px !important;
-}
-
 .form-inline {
     margin: 80px !important;
     margin-left:0px !important;
@@ -120,10 +112,5 @@ html {
     width: 161px !important;
 }
 
-#register-button {
-    width: 300px !important;
-    margin-left:187px;
-    margin-top: 80px;
-    display:block !important;
-    }
+
 }
