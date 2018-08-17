@@ -3,6 +3,7 @@ html {
     background: linear-gradient(0deg, #dbdbdb, #416b92 55%) no-repeat;
 }
 
+
 .container {
     position: fixed;
     top: 50%;
@@ -58,3 +59,11 @@ div #userName {
     &#xe195
     20 - e
  } */
+
+
+ @media screen and (max-width: 992px) {
+    .container {
+        background: linear-gradient(0deg, #dbdbdb, #416b92 55%) no-repeat;
+    }
+}
+
