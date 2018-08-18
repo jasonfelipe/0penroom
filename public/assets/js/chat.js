@@ -1,6 +1,5 @@
 
 //CODE FOR THE FRONT END.
-
 $(function () {
   
   //Uses our connection to the server
