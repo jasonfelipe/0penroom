@@ -46,7 +46,7 @@ io.on('connection', function (socket) {
   //with it. In this case it's emitting it out.
   socket.on('chat', function (data) {
     console.log('\nThe Data in Server', data);
-    io.sockets.emit('chat', data);
+    io.sockets.emit('text', data);
   });
 
 

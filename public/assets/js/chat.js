@@ -22,13 +22,13 @@ $(function () {
     // second parameter is the data we are sending, the message and name
     socket.emit('chat', {
       message: message.value,
-      name: name.value
+      // name: name.value
     });
   });
 
     //Now this looks for the 'keypress' event on the message.
     //this allows for us to have a 'name' is typing message.
-  message.addEventListener('keypress', function(){
+    message.addEventListener('keypress', function(){
 
     //again, 'typing' is the name of our message parameter,
     // and the second parameter is the data we are sending, which
@@ -39,11 +39,11 @@ $(function () {
   //Listen for message event
   socket.on('chat', function(data){
     console.log('\nThe Data from Event Listener', data);
-    feedback.innerHTML = ''; //resets our feedback after a message is sent
+    // feedback.innerHTML = ''; //resets our feedback after a message is sent
 
     //This is what's getting sent out to the HTML for the users to see.
-    output.innerHTML += '<p><strong>' 
-    + data.name + ': </strong>' + data.message + '</p>';
+    
+    output.innerHTML += '<p>' +data.message +'</p>';
   });
 
 
