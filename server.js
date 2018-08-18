@@ -21,10 +21,14 @@ app.use(bodyParser.json());
 
 //To get rid of the MIME type garbage. 
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/controllers'));
+
 
 
 //---------ROUTES---------
 require("./routes/html-routes.js")(app);
+require("./routes/api-routes.js")(app);
+
 
 
 
