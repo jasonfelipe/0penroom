@@ -3,6 +3,9 @@ html {
     background: linear-gradient(0deg, #dbdbdb, #416b92 55%) no-repeat;
 }
 
+.modal-content {
+    background-color: red;
+}
 
 #login {
     position: fixed;

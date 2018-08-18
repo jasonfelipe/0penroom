@@ -11,26 +11,33 @@ $(document).ready(function () {
         event.preventDefault();
 
         //add password input inside here when created.
-        if (!usernameInput.val().trim){
+
+
+        //checks if there is a value in the input box.
+        if (!usernameInput.val().trim) {
             return;
         }
+
+
         let newUser = {
             name: usernameInput.val().trim()
             //add password input here as well.
         };
 
-
-
-
-
         registerUser(newUser);
-});
-
-
-function registerUser(User){
-    $.post('/api/users/', User, function(){
-        $('#register-modal').modal('toggle')
     });
-}
+
+
+    function registerUser(User) {
+        $.post('/api/users/', User, function (data, err) {
+            console.log('check to see', data);
+            if (err) {
+                $('#error-modal').modal('toggle');
+            }
+            else {
+                $('#register-modal').modal('toggle');
+            }
+        });
+    }
 
 });
