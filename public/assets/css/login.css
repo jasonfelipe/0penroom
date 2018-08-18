@@ -13,11 +13,14 @@ html {
     width: 500px;
     height: 300px;
     border: 1px solid #353434;
-    box-shadow: 7px 10px #4d4c4c;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.75);
     border-radius: 15px;
 }
 
-/* -----------CONTENTS OF FORM--------------------- */
+
+
+
+/* -----------  CONTENTS OF FORM  - LANDING PAGE --------------------- */
 /* CONTAINER DIV */
 .form-inline {
     margin: 50px;
@@ -61,9 +64,4 @@ div #userName {
  } */
 
 
- @media screen and (max-width: 992px) {
-    .container {
-        background: linear-gradient(0deg, #dbdbdb, #416b92 55%) no-repeat;
-    }
-}
 
