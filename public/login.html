@@ -31,7 +31,7 @@
 
             <form id='login-form'>
                 <div class="row">
-                    <input type="text" class="form-control" id="userName" placeholder="Enter User Name Here">
+                    <input type="text" class="form-control" id='username-input' placeholder="Enter User Name Here">
 
                     <div class="col-md-6" id="remember">
                         <input class="form-check-input" type="checkbox">
@@ -67,12 +67,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    You have successfully registered!
+                    You have successfully registered! Please login!
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <a href='chat.html' type="button" class="btn btn-primary">GO CHAT!</a>
-
                 </div>
             </div>
         </div>
@@ -91,7 +89,6 @@
                     You have successfully logged in!
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <a href='chat.html' type="button" class="btn btn-primary">GO CHAT!</a>
 
                 </div>
@@ -106,8 +103,10 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
         crossorigin="anonymous"></script>
-    <!-- Controller Script -->
-    <script type="text/javascript" src='../controllers/loginController.js'></script>
+    <!-- Custom Scripts -->
+    <script type="text/javascript" src='assets/js/login.js'></script>
+    <script type="text/javascript" src='assets/js/register.js'></script>
+
 
 </body>
 

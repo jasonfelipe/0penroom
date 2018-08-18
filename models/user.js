@@ -2,7 +2,13 @@
 module.exports = function (sequelize, DataTypes) {
     //Table for the User Database. Will add more columns later.
     var User = sequelize.define('User', {
-        name: DataTypes.STRING
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1,12]
+            }
+        }
     });
 
     User.associate = function (models){
