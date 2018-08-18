@@ -46,12 +46,12 @@ io.on('connection', function (socket) {
   //with it. In this case it's emitting it out.
   socket.on('chat', function (data) {
     console.log('\nThe Data in Server', data);
-    io.sockets.emit('text', data);
+    io.sockets.emit('chat', data);
   });
 
 
   //Server receiving who is typing and then sending the data out.
-  socket.on('typing', function (data) {
+  socket.on('typing', function(data){
     //Socket syntax. This 'broadcast' puts a message to all users.
     socket.broadcast.emit('typing', data);
   });
