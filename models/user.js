@@ -7,11 +7,11 @@ module.exports = function (sequelize, DataTypes) {
             unique: {
                 args: true,
                 msg: 'NAME IS ALREADY IN USE!'
-            },
+            },  
             allowNull: false,
             validate: {
                 len: [1, 12],
-                
+
             }
         }
     });
