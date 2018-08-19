@@ -1,26 +1,31 @@
 //Stuff to do.
-//Get Database info to see if user exists.
-//If user exists, put them into the chat.
 //Make sure no one else can log in as user as long as they are there.
-
-$(function() {
+$(function () {
 
     $('#login-button').on('click', function () {
         loginUser();
-        $('#login-modal').modal('toggle')
     });
 
-
-//Function to Log in the user.
+    //Function to Log in the user.
     function loginUser() {
         const username = $('#username-input').val();
-        console.log('this is a login function');
-        console.log(username)
+        //checks to see if the login name is inside the database.
+        $.get('/api/users/' + username, function (data, err) {
+            if (!data || username === '') {
+                $('.modal-body').html('Please input a valid username, or please register.')
+                $('#error-modal').modal('toggle')
 
-        //Stuff to do. 
-        //Keep user Logged in as username (maybe we can use socket.id as a login variable?)
+            }
+            else {
+                $('.modal-body').html('Go ahead and chat!')
+                $('#login-modal').modal('toggle')
 
-
+                console.log(username)
+                return username;
+            }
+            
+        });
+        
     }
-
 });
+

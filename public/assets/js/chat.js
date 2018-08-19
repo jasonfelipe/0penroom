@@ -1,5 +1,7 @@
 
 //CODE FOR THE FRONT END.
+const username = require('./login.js');
+console.log(username.username)
 
 $(function () {
 

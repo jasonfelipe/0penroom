@@ -3,8 +3,11 @@ html {
     background: linear-gradient(0deg, #dbdbdb, #416b92 55%) no-repeat;
 }
 
+#error-modal-body {
+    background-color: red;
+}
 
-.container {
+#login {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -13,55 +16,120 @@ html {
     width: 500px;
     height: 300px;
     border: 1px solid #353434;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.75);
+    box-shadow: 7px 10px #4d4c4c;
     border-radius: 15px;
-}
+    }
 
 
-
-
-/* -----------  CONTENTS OF FORM  - LANDING PAGE --------------------- */
-/* CONTAINER DIV */
 .form-inline {
-    margin: 50px;
+        margin: 50px;
 }
 
 .welcome-h2 {
     text-align: center;
-    margin: -25px 0 10px 78px;
     font-family: 'Kaushan Script', cursive;
     font-size: 35px;
+    margin-left: 90px;
+    margin-top: -20px;
 }
 
-div #userName {
-    width: 350px;
-    margin-top: 5px;
-}
-
-/* TICK BOX */
-.rememberMe {
+#login-form{
+    margin-left:120px;
     margin-top: -50px;
 }
 
-/* BUTTON TO ENTER CHAT ROOM */
+
+#username-input {
+    width:300px;
+}
+
 .btn-primary {
-    margin-top: 70px;
-    margin-left: -20px;
     background: #4f80ad;
 }
 
-/* REGISTER/MORE INFO ----LINK VS GLIPHICON???------- */
+#help-link {
+    height:1.5em;
+}
+
 .info {
     margin-left: 38px;
     margin-top: 70px;
 }
 
-/* GLIPHICON INFO BELOW */
- /* .info {
-    UTF+e195
-    &#xe195
-    20 - e
- } */
+#remember {
+    height: 1.5em;
+    margin-top:10px;
+}
 
 
+#buttons {
+    margin-left: 130px;
+    margin-top:30px;
+}
 
+#login-button {
+    width:90px;
+    height:40px;
+}
+
+#register-button {
+    width: 90px;
+    height: 40px;
+}
+
+/* Log in screen for PHONES. */
+@media screen and (max-width: 400px) {
+html {
+    background: white;
+    }
+
+#help-link{
+    display:none;
+}
+
+.welcome-h2{
+    width:288px;
+    margin-top: -100px;
+}
+
+#login {
+        width: auto;
+        height: auto;
+        border: none; 
+        box-shadow: none;
+    }
+
+.form-inline {
+    margin: 80px !important;
+    margin-left:0px !important;
+}
+    
+#username-input {
+    width:190px !important;
+    margin-left:35px !important;
+    margin-top:-30px !important;
+    margin-bottom: 30px !important;
+}
+
+#remember {
+    width: 161px !important;
+    margin-top:0px;
+}
+
+#buttons {
+    margin-left:65px;
+}
+
+#login-button{
+    margin-top: 60px;
+    height:60px;
+    width: 300px;
+}
+
+#register-button {
+    width: 200px;
+    margin-left:48px;
+
+}
+
+}

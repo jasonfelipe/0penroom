@@ -1,6 +1,5 @@
 //Stuff to do.
-//Make sure the same username cannot be created.
-
+//(Bonus put in password input)
 $(document).ready(function () {
     const usernameInput = $('#username-input')
 
@@ -30,8 +29,8 @@ $(document).ready(function () {
 
     function registerUser(User) {
         $.post('/api/users/', User, function (data, err) {
-            console.log('check to see', data);
-            if (err) {
+            //A really ghetto way to see if registering works!! 
+            if (data.name === 'SequelizeUniqueConstraintError') { //This also works because nobody can get a username like this because of the 12 character length max
                 $('#error-modal').modal('toggle');
             }
             else {
