@@ -1,0 +1,50 @@
+html {
+    height:100%;
+}
+
+
+body{
+    background: linear-gradient(0deg, #dbdbdb, #416b92 55%) no-repeat;
+
+}
+#login {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    width: 600px;
+    height: 500px;
+    border: 1px solid #353434;
+    box-shadow: 7px 10px #4d4c4c;
+    border-radius: 15px;
+    }
+
+
+.form-inline {
+        margin: 50px;
+}
+
+#h1 {
+    text-align: center;
+    font-family: 'Kaushan Script', cursive;
+    font-size: 35px;
+    margin-top: -20px;
+}
+#buttons {
+    margin: 10!important
+}
+
+/* Log in screen for PHONES. */
+@media screen and (max-width: 450px) {
+html {
+    background: white;
+    }
+
+#login {
+        width: 100%;
+        height: auto;
+        border: none; 
+        box-shadow: none;
+    }
+}
