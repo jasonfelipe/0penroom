@@ -5,6 +5,7 @@ var path = require("path");
 
 //Stuff to do(?)
 // Create automatic routes for each topic post
+// ^ That may be unnecessary 
 
 
 
