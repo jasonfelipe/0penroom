@@ -32,11 +32,18 @@ $(document).ready(function () {
         $.post('/api/users/', User, function (data, err) {
             //A really ghetto way to see if registering works!! 
             if (data.name === 'SequelizeUniqueConstraintError') { //This also works because nobody can get a username like this because of the 12 character length max
+                $('.modal-content').css('color', 'red');
+                $('.modal-title').html('ERROR!')
                 $('.modal-body').html('Error creating name. <br>Name must be 1-12 characters long <br> Name may be already taken')
-                $('#error-modal').modal('toggle');
+                $('#chat-link-button').hide()
+                $('#modal').modal('toggle');
             }
             else {
-                $('#register-modal').modal('toggle');
+                $('.modal-content').css('color', 'black');
+                $('.modal-title').html('Regiser Successful!')
+                $('.modal-body').html('You have successfully registered! Please Log in!')
+                $('#chat-link-button').hide()
+                $('#modal').modal('toggle');
             }
         });
     }

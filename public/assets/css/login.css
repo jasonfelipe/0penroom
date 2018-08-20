@@ -7,6 +7,12 @@ html {
     background-color: red;
 }
 
+
+.form-check-input{
+    margin-top: 15px !important;
+    margin-left: -100px !important;
+}
+
 #login {
     position: fixed;
     top: 50%;
@@ -111,9 +117,13 @@ html {
     margin-bottom: 30px !important;
 }
 
+.form-check-input{
+    margin-left: -90px !important;
+}
+
 #remember {
-    width: 161px !important;
-    margin-top:0px;
+    width: 180px !important;
+    margin-top:-20px;
 }
 
 #buttons {

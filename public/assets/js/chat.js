@@ -1,17 +1,24 @@
 
 //CODE FOR THE FRONT END.
-const username = require('./login.js');
-console.log(username.username)
-
 $(function () {
+  $('#chat-main').hide();
+
+  $('#sidebarCollapse').on('click', function () {
+    $('#sidebar').toggleClass('active');
+    $(this).toggleClass('active');
+  });
+
+
+
+//==============BE WARNED!=============
+// THE REST OF THIS CODE USES VANILLA JAVASCRIPT!!! (with socket.io)
 
   //Uses our connection to the server
   const socket = io();
 
-
   //Client side variables. AKA stuff from the DOM
   const message = document.getElementById('message'),
-    name = document.getElementById('name'),
+    name = document.getElementById('username'),
     btn = document.getElementById('send-message'),
     output = document.getElementById('output'),
     feedback = document.getElementById('feedback');
@@ -25,10 +32,10 @@ $(function () {
     // second parameter is the data we are sending, the message and name
     socket.emit('chat', {
       message: message.value,
-      name: name.value
+      name: name.innerText
     });
 
-    $('chat-window').scrollTop = $('chat-window').scrollHeight;
+    // $('#chat-window').scrollTop = $('#chat-window').scrollHeight;
 
 
   });
@@ -43,7 +50,9 @@ $(function () {
   socket.on('chat', function (data) {
     console.log('\nThe Data from Event Listener', data);
     feedback.innerHTML = ''; //resets our feedback after a message is sent
+
     output.innerHTML += '<p><strong>'
+
       + data.name + ': </strong>' + data.message + '</p>';
 
     var chatWindow = document.getElementById("chat-window");

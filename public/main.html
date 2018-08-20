@@ -15,6 +15,8 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/login.css">
+    <link rel="stylesheet" href="assets/css/chat.css">
+
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -48,16 +50,87 @@
                     <button type="submit" class="btn btn-primary mb-2" id="login-button">Enter</button>
                 </div>
             </div>
-
-
             <!-- <a href='chat.html'>TEST LINK</a> -->
         </div>
-
     </div>
 
+    <div id='chat-main'>
+        <!-- THIS IS WHERE THE SIDE BARS BEGIN -->
+        <div class="wrapper">
+            <nav id="sidebar">
+                <!-- Sidebar Header -->
+                <div class="sidebar-header">
+                    <h3>MENU</h3>
+                </div>
+                <br>
+                <!-- Sidebar Links -->
+                <ul class="list-unstyled components">
+                    <li id="menuBar" class="active">
+                        <a href="#">About</a>
+                    </li>
+                    <!-- <li><a href="#">About</a></li> -->
+                    <li>
+                        <!-- Link with dropdown items -->
+                        <li id="menuBar">
+                            <a href="#">Contact</a>
+                        </li>
+                        <a id="menuBar" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Topics</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li id="menuBar">
+                                <a href="#">Top 1</a>
+                            </li>
+                            <li id="menuBar">
+                                <a href="#">Top 2</a>
+                            </li>
+                            <li id="menuBar">
+                                <a href="#">Top 3</a>
+                            </li>
+                        </ul>
+                </ul>
+            </nav>
 
-    <!-- Register Modal -->
-    <div class="modal fade" id="register-modal" tabindex="-1" role="dialog">
+            <div id="content">
+                <button type="button" id="sidebarCollapse" class="navbar-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div>
+
+                </div>
+            </div>
+        </div>
+        <!-- END OF SIDE BARS -->
+
+
+
+        <!-- THIS IS WHERE THE CHAT BOX BEGINS -->
+
+        <!-- THE WHOLE CHAT BOX -->
+        <div class="container" id="chat-box">
+
+            <!-- THIS IS THE WINDOW -->
+            <div class="row" id="chat-window">
+                <!-- Where all the messages get created DYNAMICALLY-->
+                <div class="row" id="output"></div>
+                <!-- Shows if a user is typing -->
+                <div id='feedback'></div>
+
+            </div>
+
+
+            <!-- Place for username -->
+            <div id=username></div>
+            <!-- Message Input -->
+            <input id='message' type='text' placeholder='Your message' />
+            <button class='btn-primary' id='send-message'>Send</button>
+        </div>
+
+        <!-- END OF CHAT BOX -->
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -70,54 +143,12 @@
                     You have successfully registered! Please login!
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id=close type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Login Modal -->
-    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="">Login Complete!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    You have successfully logged in!
-                </div>
-                <div class="modal-footer">
-                    <a href='chat.html' type="button" class="btn btn-primary">GO CHAT!</a>
 
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Error Modal -->
-    <div class="modal fade" id="error-modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content" id='error-modal-body'>
-                <div class="modal-header">
-                    <h5 class="modal-title" id=""><strong>ERROR!</strong></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Error creating name.
-                    <br>Name must be 1-12 characters long
-                    <br>Name may be already taken
-                </div>
-                <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- JQUERY -->
     <script src="https://code.jquery.com/jquery.js"></script>
@@ -126,9 +157,15 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
         crossorigin="anonymous"></script>
+
+    <!-- Socket IO -->
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+
     <!-- Custom Scripts -->
     <script type="text/javascript" src='assets/js/login.js'></script>
     <script type="text/javascript" src='assets/js/register.js'></script>
+    <script type="text/javascript" src="assets/js/chat.js"></script>
+
 
 
 </body>
