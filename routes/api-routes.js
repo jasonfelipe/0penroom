@@ -1,7 +1,15 @@
+
+//Stuff to do
+//Creating Get, Post, Updates, Deletes for Posts
+//Creating Get, Post, Updates, Deletes for Messages
+
+
 var db = require("../models");
 
 
 module.exports = function (app) {
+
+//-----API ROUTES FOR FINDING AND CREATING USERS-----
     app.get("/api/users/", function(req, res) {
         db.User.findAll({})
           .then(function(dbUsers) {
@@ -10,22 +18,38 @@ module.exports = function (app) {
       });
 
 
+    //Finding a matching name in the database. AKA the login (and for user profiles)
+    app.get("/api/users/:name?", function(req,res){
+      db.User.findOne({
+        where: {
+          name: req.params.name
+        }
+      })
+        .then(function(dbUsers){
+          res.json(dbUsers);
+        });
+    });
+
+
+    //Registering a username.
     app.post("/api/users", function(req, res) {
-
-        console.log(req.body);
-        // create takes an argument of an object describing the item we want to
-        // insert into our table. In this case we just we pass in an object with a text
-        // and complete property (req.body)
-
+      
+        //creating a user by getting the req.body.name
         db.User.create({
           name: req.body.name,
         }).then(function(dbUsers) {
-          // We have access to the new todo as an argument inside of the callback function
+
           res.json(dbUsers);
 
+          //catching an error and sending it back to the client side. (the console log is in the server).
         }).catch(function(err){
           console.log('Error creating username')
           res.send(err);
         });
       }); 
+
+//-----PLACE CODE FOR CREATING/UPDATING/GETTING/DELETING POSTS
+
+
+//-----PLACE CODE FOR CREATING/UPDATING/GETTING MESSAGES
 }

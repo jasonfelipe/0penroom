@@ -21,14 +21,10 @@ app.use(bodyParser.json());
 
 //To get rid of the MIME type garbage. 
 app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname + '/controllers'));
-
 
 
 //---------ROUTES---------
 require("./routes/html-routes.js")(app);
-require("./routes/api-routes.js")(app);
-
 
 
 
@@ -51,7 +47,7 @@ io.on('connection', function (socket) {
 
 
   //Server receiving who is typing and then sending the data out.
-  socket.on('typing', function(data){
+  socket.on('typing', function (data) {
     //Socket syntax. This 'broadcast' puts a message to all users.
     socket.broadcast.emit('typing', data);
   });

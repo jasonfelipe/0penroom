@@ -1,8 +1,8 @@
 //Stuff to do
 
-//display ALL user's own posts(?)
-//Ability to update/edit user's OWN posts(?)
+//display ALL user's own posts(?), CHECK API ROUTES IF CODE IS THERE (check if table is getting called on)
+//Ability to update/edit user's OWN posts(?), CHECK API ROUTES IF CODE IS THERE (check if table is getting called on)
 
 const express = require('express');
 const router = express.Router();
-const burger = require("../models/messages.js");
+const messages = require("../models/messages.js");
