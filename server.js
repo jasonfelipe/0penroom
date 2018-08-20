@@ -47,7 +47,7 @@ io.on('connection', function (socket) {
   //Server receiving the submitted data, and doing something
   //with it. In this case it's emitting it out.
   socket.on('chat', function (data) {
-    console.log('\nThe Data in Server', data);
+    console.log('\nThe Data in Server (server.js)', data);
     io.sockets.emit('chat', data);
   });
 
@@ -58,8 +58,20 @@ io.on('connection', function (socket) {
     socket.broadcast.emit('typing', data);
   });
 
-  return socketId
+
+  //Code for switching rooms.
+
+  // socket.on('room', function(room){
+  //   socket.on(room);
+  // });
+
+
+
+
 });
+
+
+
 
 
 

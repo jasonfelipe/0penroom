@@ -10,8 +10,8 @@ $(function () {
 
 
 
-//==============BE WARNED!=============
-// THE REST OF THIS CODE USES VANILLA JAVASCRIPT!!! (with socket.io)
+  //==============BE WARNED!=============
+  // THE REST OF THIS CODE USES VANILLA JAVASCRIPT!!! (with socket.io)
 
   //Uses our connection to the server
   const socket = io();
@@ -21,11 +21,25 @@ $(function () {
     name = document.getElementById('username'),
     btn = document.getElementById('send-message'),
     output = document.getElementById('output'),
-    feedback = document.getElementById('feedback');
+    feedback = document.getElementById('feedback'),
+    chatRoom = $(this.topic).val();
+   
+
+
+
+  //Placeholder for switching chat rooms.
+
+  //buttons or link value will be the chatroom name.  
+
+  socket.on('connect', function () {
+    socket.emit('room', chatRoom);
+  });
 
 
   //emit/send to server on the click
   btn.addEventListener('click', function () {
+
+
 
     // syntax to send stuff to the server
     // 'chat' is the name of the message parameter, 
@@ -35,7 +49,6 @@ $(function () {
       name: name.innerText
     });
 
-    // $('#chat-window').scrollTop = $('#chat-window').scrollHeight;
 
 
   });
@@ -49,12 +62,21 @@ $(function () {
   //Listen for message event
   socket.on('chat', function (data) {
     console.log('\nThe Data from Event Listener', data);
+
+    let newMessage = {
+      message: data.message,
+      name: data.name
+    }
+
+    databaseMessage(newMessage);
+
     feedback.innerHTML = ''; //resets our feedback after a message is sent
 
+    //Puts the message out into the HTML
     output.innerHTML += '<p><strong>'
-
       + data.name + ': </strong>' + data.message + '</p>';
 
+    //puts chat to the bottom of window when new message pops up
     var chatWindow = document.getElementById("chat-window");
     chatWindow.scrollTop = chatWindow.scrollHeight;
   });
@@ -69,5 +91,10 @@ $(function () {
 
   });
 
+  function databaseMessage(message) {
+    $.post('/api/messages/', message, function (data, err) {
+      console.log(data)
+    });
 
+  }
 });

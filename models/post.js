@@ -2,6 +2,10 @@
 module.exports = function(sequelize, DataTypes) {
     //Table for a User's posts.
     var Post = sequelize.define("Post", {
+      user: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
       title: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -13,9 +17,7 @@ module.exports = function(sequelize, DataTypes) {
   
     Post.associate = function(models) {
       Post.belongsTo(models.User, {
-        foreignKey: {
-          allowNull: false
-        }
+
       });
     };
   
