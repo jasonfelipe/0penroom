@@ -21,32 +21,45 @@ $(function () {
     name = document.getElementById('username'),
     btn = document.getElementById('send-message'),
     output = document.getElementById('output'),
-    feedback = document.getElementById('feedback'),
-    chatRoom = $(this.topic).val();
-   
+    feedback = document.getElementById('feedback');
 
 
 
-  //Placeholder for switching chat rooms.
+    //Default Room.
+  let room = 'Main';
 
-  //buttons or link value will be the chatroom name.  
-
+    //Code that connects to the room.
   socket.on('connect', function () {
-    socket.emit('room', chatRoom);
+    socket.emit('room', room);
   });
 
 
-  //emit/send to server on the click
+
+  // //Placeholder for switching chat rooms. (psuedo code)
+  // //buttons or link value will be the chatroom name.  
+  // topicButton.addEventListener('click', function (){
+  //   room = $(this).val(); //switching the variables
+
+  //   socket.on('connect', function() { //reusing what we just did above.
+  //     socket.emit('room', room);
+  //   });
+
+  // });
+
+
+
+
+
+
+  // emit/send to server on the click
   btn.addEventListener('click', function () {
-
-
-
     // syntax to send stuff to the server
     // 'chat' is the name of the message parameter, 
     // second parameter is the data we are sending, the message and name
     socket.emit('chat', {
       message: message.value,
-      name: name.innerText
+      name: name.innerText,
+      topic: room
     });
 
 
@@ -56,16 +69,18 @@ $(function () {
   //Now this looks for the 'keypress' event on the message.
   //this allows for us to have a 'name' is typing message.
   message.addEventListener('keypress', function () {
-    socket.emit('typing', name.value);
+    socket.emit('typing', name.innerText);
   });
 
   //Listen for message event
   socket.on('chat', function (data) {
-    console.log('\nThe Data from Event Listener', data);
+    console.log('\nThe Data from Event Listener', data, "\n");
+
 
     let newMessage = {
       message: data.message,
-      name: data.name
+      name: data.name,
+      topic: room 
     }
 
     databaseMessage(newMessage);

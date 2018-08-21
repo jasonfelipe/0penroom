@@ -52,17 +52,24 @@ module.exports = function (app) {
 
 
   //-----PLACE CODE FOR CREATING/UPDATING/GETTING MESSAGES
+
+
+  //Creating Messages
   app.post("/api/messages", function (req, res) {
     
     console.log(
-      'API MESSAGE ROUTES CONSOLE LOG',
+      '\nAPI MESSAGE ROUTES CONSOLE LOG',
       req.body.name,
-      req.body.message)
+      req.body.message,
+      req.body.topic,
+      "\n"
+    );
 
 
       db.Message.create({
       user: req.body.name,
-      message: req.body.message
+      message: req.body.message,
+      topic: req.body.topic 
     }).then(function (dbMessages) {
 
       res.json(dbMessages);
@@ -73,5 +80,9 @@ module.exports = function (app) {
       res.send(err);
     });
   });
+
+  //Getting messages
+
+  // app.get('/api/messages',)
 
 }
