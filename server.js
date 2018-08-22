@@ -47,6 +47,7 @@ io.on('connection', function (socket) {
   //Code for switching rooms. (CHECK CHAT.JS FOR DEFAULTS AND WHERE THE CLIENT SWITCHES)
   socket.on('room', function (room) {
     socket.leaveAll();
+    console.log(room);
     socket.join(room);
     console.log('Connected to room:', room, "| Your Socket ID is: ", socketId);
     socket.to(room).emit('User Joined', socketId);
