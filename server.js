@@ -14,7 +14,9 @@ const io = require('socket.io')(http);
 const db = require("./models");
 //===============================
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 // parse application/json
 app.use(bodyParser.json());
 
@@ -33,6 +35,13 @@ require("./routes/api-routes.js")(app);
 
 
 //-------SOCKET IO CODE--------
+// io.sockets.on('connection', function (socket) {
+
+//   socket.on('room', function(data) { socket.join(data.room); })
+
+//   socket.on('disconnect', function(data) { socket.leave(data.room); })
+
+// });
 
 //connection to server. The Callback function
 io.on('connection', function (socket) {
@@ -46,15 +55,27 @@ io.on('connection', function (socket) {
 
   //Code for switching rooms. (CHECK CHAT.JS FOR DEFAULTS AND WHERE THE CLIENT SWITCHES)
   socket.on('room', function (room) {
+    socket.on('dis', function () {
+      console.log("disconnected " + room)
+      socket.leaveAll();
+      socket.leave(room);
+      socket.to(room).emit('User Left', socketId)
+    });
     socket.leaveAll();
-    
+    console.log("--------------")
     console.log(room);
     socket.join(room);
     console.log('Connected to room:', room, "| Your Socket ID is: ", socketId);
     socket.to(room).emit('User Joined', socketId);
+
+
+    
+
+
     //Server receiving the submitted data, and doing something
     //with it. In this case it's emitting it out.
-    socket.on('chat', function (data) {
+    socket.on('chat' , function (data) {
+
       console.log('\nThe Data in Server (server.js)', data, 'Room Name: ', room, "\n");
       io.to(room).emit('chat', data);
     });
@@ -66,13 +87,9 @@ io.on('connection', function (socket) {
       socket.broadcast.to(room).emit('typing', data);
     });
 
-    socket.on('disconnect', function () {
-      socket.leave(room);
-      socket.to(room).emit('User Left', socketId)
-    });
+    
   });
-
-
+  
 });
 
 //Sequelize
@@ -82,4 +99,3 @@ db.sequelize.sync({}).then(function () {
   });
 
 });
-

@@ -32,18 +32,20 @@ $(function () {
   let room = 'Main';
 
   //Code that connects to the room.
-  socket.on('connect', function () {
-    socket.emit('room', room);
-  });
+  // socket.on('connect', function () {
+  //   socket.emit('room', room);
+  // });
 
 
 
   //Placeholder for switching chat rooms. (psuedo code)
   //buttons or link value will be the chatroom name.  
   $('.roomName').on('click', function () {
+    console.log("________________________")
     console.log("Leaving room: " + room)
-
+    socket.emit('dis',room)
     //leaving a room
+    socket.emit('connection')
 
     console.log("ROOM -->", $(this)[0].innerHTML);
 
@@ -63,9 +65,9 @@ $(function () {
       chatWindow.scrollTop = chatWindow.scrollHeight;
       return room;
     });
+
+  
   });
-
-
 
   // emit/send to server on the click
   btn.addEventListener('click', function () {
@@ -78,7 +80,7 @@ $(function () {
       topic: room
     });
 
-
+chat()
 
   });
 
@@ -89,17 +91,18 @@ $(function () {
   });
 
   //Listen for message event
-  socket.on('chat', function (data) {
-    console.log('\nThe Data from Event Listener', data, "\n");
+  function chat(){
+  
+    console.log('\nThe Data from Event Listener',  "\n");
 
 
-    let newMessage = {
-      message: data.message,
-      name: data.name,
-      topic: room
-    }
+    // let newMessage = {
+    //   message: data.message,
+    //   name: data.name,
+    //   topic: room
+    // }
 
-    databaseMessage(newMessage);
+    // databaseMessage(newMessage);
 
     feedback.innerHTML = ''; //resets our feedback after a message is sent
 
@@ -107,11 +110,16 @@ $(function () {
 
     //Puts the message out into the HTML
     output.innerHTML += '<p><strong>' +
-      data.name + ': </strong>' + data.message + '</p>';
+      name.innerText + ': </strong>' + message.value + '</p>';
 
     //puts chat to the bottom of window when new message pops up
     chatWindow.scrollTop = chatWindow.scrollHeight;
-  });
+ }
+
+
+
+
+
 
 
   //Listen for typing event
