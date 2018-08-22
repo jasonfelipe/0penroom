@@ -15,9 +15,35 @@ $(function () {
         feedback = document.getElementById('feedback');
 
 
-  //emit/send to server on the click
-  btn.addEventListener('click', function () {
 
+    //Default Room.
+  let room = 'Main';
+
+    //Code that connects to the room.
+  socket.on('connect', function () {
+    socket.emit('room', room);
+  });
+
+
+
+  // //Placeholder for switching chat rooms. (psuedo code)
+  // //buttons or link value will be the chatroom name.  
+  // topicButton.addEventListener('click', function (){
+  //   room = $(this).val(); //switching the variables
+
+  //   socket.on('connect', function() { //reusing what we just did above.
+  //     socket.emit('room', room);
+  //   });
+
+  // });
+
+
+
+
+
+
+  // emit/send to server on the click
+  btn.addEventListener('click', function () {
     // syntax to send stuff to the server
     // 'chat' is the name of the message parameter, 
     // second parameter is the data we are sending, the message and name
@@ -57,5 +83,10 @@ $(function () {
     '</em></p>'
   });
 
+  function databaseMessage(message) {
+    $.post('/api/messages/', message, function (data, err) {
+      console.log(data)
+    });
 
+  }
 });
