@@ -42,6 +42,11 @@ $(function () {
 
   //   socket.on('connect', function() { //reusing what we just did above.
   //     socket.emit('room', room);
+  //     console.log('Welcome to Topic:', room);
+  //    $.get('/api/messages/ + room, function(){
+
+  //        })
+
   //   });
 
   // });
