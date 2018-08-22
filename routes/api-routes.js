@@ -49,7 +49,12 @@ module.exports = function (app) {
   });
 
   //-----PLACE CODE FOR CREATING/UPDATING/GETTING/DELETING POSTS
+app.post("/api/posts", function (req, res){
 
+  db.Post.create({
+    
+  })
+})
 
   //-----PLACE CODE FOR CREATING/UPDATING/GETTING MESSAGES
 
