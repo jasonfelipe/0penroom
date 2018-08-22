@@ -62,7 +62,7 @@ $(function () {
       topic: room
     });
 
-
+    $('#message').val('')
 
   });
 

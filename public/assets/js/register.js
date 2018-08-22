@@ -44,6 +44,8 @@ $(document).ready(function () {
                 $('.modal-body').html('You have successfully registered! Please Log in!')
                 $('#chat-link-button').hide()
                 $('#modal').modal('toggle');
+
+                
             }
         });
     }
