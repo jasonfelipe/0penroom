@@ -21,10 +21,14 @@ app.use(bodyParser.json());
 
 //To get rid of the MIME type garbage. 
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/controllers'));
+
 
 
 //---------ROUTES---------
 require("./routes/html-routes.js")(app);
+require("./routes/api-routes.js")(app);
+
 
 
 
@@ -38,27 +42,41 @@ io.on('connection', function (socket) {
     "SOCKET ID: ", socket.id,
   );
 
-  //Server receiving the submitted data, and doing something
-  //with it. In this case it's emitting it out.
-  socket.on('chat', function (data) {
-    console.log('\nThe Data in Server', data);
-    io.sockets.emit('chat', data);
+  let socketId = socket.id
+
+  //Code for switching rooms. (CHECK CHAT.JS FOR DEFAULTS AND WHERE THE CLIENT SWITCHES)
+  socket.on('room', function (room) {
+    socket.join(room);
+    console.log('Connected to room:', room);
+    
+    //Server receiving the submitted data, and doing something
+    //with it. In this case it's emitting it out.
+    socket.on('chat', function (data) {
+      console.log('\nThe Data in Server (server.js)', data ,  'Room Name: ',  room,  "\n");
+      io.to(room).emit('chat', data);
+    });
+    
+    
+    //Server receiving who is typing and then sending the data out.
+    socket.on('typing', function (data) {
+      //Socket syntax. This 'broadcast' puts a message to all users.
+      socket.broadcast.to(room).emit('typing', data);
+    });
+    
+    
+    // socket.on('disconnect', function () { 
+      //   socket.broadcast.emit('disconnect', )
+      // });
+    });
+        
+    
   });
-
-
-  //Server receiving who is typing and then sending the data out.
-  socket.on('typing', function (data) {
-    //Socket syntax. This 'broadcast' puts a message to all users.
-    socket.broadcast.emit('typing', data);
-  });
-});
-
-
-
-//Sequelize
-db.sequelize.sync({}).then(function () {
-  http.listen(PORT, function () {
+  
+  //Sequelize
+  db.sequelize.sync({}).then(function () {
+    http.listen(PORT, function () {
     console.log('\nlistening on *:' + PORT);
   });
 
 });
+

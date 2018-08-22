@@ -1,18 +1,27 @@
 
 //CODE FOR THE FRONT END.
-
 $(function () {
-  
+  $('#chat-main').hide();
+
+  $('#sidebarCollapse').on('click', function () {
+    $('#sidebar').toggleClass('active');
+    $(this).toggleClass('active');
+  });
+
+
+
+  //==============BE WARNED!=============
+  // THE REST OF THIS CODE USES VANILLA JAVASCRIPT!!! (with socket.io)
+
   //Uses our connection to the server
   const socket = io();
 
-
   //Client side variables. AKA stuff from the DOM
   const message = document.getElementById('message'),
-        name = document.getElementById('name'),
-        btn = document.getElementById('send-message'),
-        output = document.getElementById('output'),
-        feedback = document.getElementById('feedback');
+    name = document.getElementById('username'),
+    btn = document.getElementById('send-message'),
+    output = document.getElementById('output'),
+    feedback = document.getElementById('feedback');
 
 
 
@@ -49,38 +58,52 @@ $(function () {
     // second parameter is the data we are sending, the message and name
     socket.emit('chat', {
       message: message.value,
-      name: name.value
+      name: name.innerText,
+      topic: room
     });
+
+
+
   });
 
-    //Now this looks for the 'keypress' event on the message.
-    //this allows for us to have a 'name' is typing message.
-  message.addEventListener('keypress', function(){
-
-    //again, 'typing' is the name of our message parameter,
-    // and the second parameter is the data we are sending, which
-    //in this case is only the name.
-    socket.emit('typing', name.value);
+  //Now this looks for the 'keypress' event on the message.
+  //this allows for us to have a 'name' is typing message.
+  message.addEventListener('keypress', function () {
+    socket.emit('typing', name.innerText);
   });
 
   //Listen for message event
-  socket.on('chat', function(data){
-    console.log('\nThe Data from Event Listener', data);
+  socket.on('chat', function (data) {
+    console.log('\nThe Data from Event Listener', data, "\n");
+
+
+    let newMessage = {
+      message: data.message,
+      name: data.name,
+      topic: room 
+    }
+
+    databaseMessage(newMessage);
+
     feedback.innerHTML = ''; //resets our feedback after a message is sent
 
-    //This is what's getting sent out to the HTML for the users to see.
-    output.innerHTML += '<p><strong>' 
-    + data.name + ': </strong>' + data.message + '</p>';
+    //Puts the message out into the HTML
+    output.innerHTML += '<p><strong>'
+      + data.name + ': </strong>' + data.message + '</p>';
+
+    //puts chat to the bottom of window when new message pops up
+    var chatWindow = document.getElementById("chat-window");
+    chatWindow.scrollTop = chatWindow.scrollHeight;
   });
 
 
   //Listen for typing event
-  socket.on('typing', function(data){
+  socket.on('typing', function (data) {
+    feedback.innerHTML =
+      '<p><em>' + data +
+      ' is typing a message...' +
+      '</em></p>'
 
-    //This is what's getting sent out to the HTML for the users to see.
-    feedback.innerHTML = '<p><em>' + data + 
-    ' is typing a message...' +
-    '</em></p>'
   });
 
   function databaseMessage(message) {
@@ -90,3 +113,7 @@ $(function () {
 
   }
 });
+
+$('#topicBtn').on('click',function(){
+  $('#topicModal').modal('toggle')
+})
