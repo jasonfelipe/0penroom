@@ -114,6 +114,7 @@ $(function () {
   }
 });
 
+// new topic modal
 $('#topicBtn').on('click',function(){
   $('#topicModal').modal('toggle')
 })

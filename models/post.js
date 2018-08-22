@@ -2,15 +2,18 @@
 module.exports = function(sequelize, DataTypes) {
     //Table for a User's posts.
     var Post = sequelize.define("Post", {
-      user: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
       title: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          len: [1, 140]
+          len: [1,140]
+        }
+      },
+      description: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [1, 3000]
         }
       }
     });
