@@ -1,4 +1,3 @@
-
 //CODE FOR THE FRONT END.
 $(function () {
   $('#chat-main').hide();
@@ -14,14 +13,18 @@ $(function () {
   // THE REST OF THIS CODE USES VANILLA JAVASCRIPT!!! (with socket.io)
 
   //Uses our connection to the server
-  const socket = io();
+
+
+  var socket = io();
+
 
   //Client side variables. AKA stuff from the DOM
   const message = document.getElementById('message'),
     name = document.getElementById('username'),
     btn = document.getElementById('send-message'),
     output = document.getElementById('output'),
-    feedback = document.getElementById('feedback');
+    feedback = document.getElementById('feedback'),
+    chatWindow = document.getElementById("chat-window");
 
 
 
@@ -37,22 +40,30 @@ $(function () {
 
   //Placeholder for switching chat rooms. (psuedo code)
   //buttons or link value will be the chatroom name.  
-  topicButton.addEventListener('click', function () {
-    room = $(this).val(); //switching the variables
+  $('.roomName').on('click', function () {
+    console.log("Leaving room: " + room)
 
-    socket.on('connect', function () { //reusing what we just did above.
-      socket.emit('room', room);
-      console.log('Welcome to Topic:', room);
-      $.get('/api/messages', function (data, err) {
-        console.log(data);
-      });
+    //leaving a room
 
+    console.log("ROOM -->", $(this)[0].innerHTML);
+
+    output.innerHTML = ""
+
+    room = $(this)[0].innerHTML; //switching the variables
+    socket.emit('room', room);
+    console.log('Welcome to Topic:', room);
+    $.get('/api/messages/' + room, function (data, err) {
+      console.log("Console logging data in chat.js", data)
+
+      for (var i = 0; i < data.length; i++) {
+        output.innerHTML += '<p><strong>' +
+          data[i].user + ': </strong>' + data[i].message + '</p>';;
+      }
+
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+      return room;
     });
-
   });
-
-
-
 
 
 
@@ -67,7 +78,7 @@ $(function () {
       topic: room
     });
 
-    $('#message').val('')
+
 
   });
 
@@ -92,12 +103,13 @@ $(function () {
 
     feedback.innerHTML = ''; //resets our feedback after a message is sent
 
+    message.innerHTML = ''; //resets our message input?
+
     //Puts the message out into the HTML
-    output.innerHTML += '<p><strong>'
-      + data.name + ': </strong>' + data.message + '</p>';
+    output.innerHTML += '<p><strong>' +
+      data.name + ': </strong>' + data.message + '</p>';
 
     //puts chat to the bottom of window when new message pops up
-    var chatWindow = document.getElementById("chat-window");
     chatWindow.scrollTop = chatWindow.scrollHeight;
   });
 
@@ -120,7 +132,6 @@ $(function () {
 });
 
 // new topic modal
-$('#topicBtn').on('click',function(){
+$('#topicBtn').on('click', function () {
   $('#topicModal').modal('toggle')
 })
-
