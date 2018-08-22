@@ -83,7 +83,7 @@ module.exports = function (app) {
 
   //Getting messages on specific topic
 
-  app.get('/api/messages', function (req, res) {
+  app.get('/api/messages/:topic?', function (req, res) {
     db.Message.findAll({
       where: {
         topic: req.params.topic

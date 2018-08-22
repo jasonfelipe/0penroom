@@ -25,31 +25,31 @@ $(function () {
 
 
 
-    //Default Room.
+  //Default Room.
   let room = 'Main';
 
-    //Code that connects to the room.
+  //Code that connects to the room.
   socket.on('connect', function () {
     socket.emit('room', room);
   });
 
 
 
-  // //Placeholder for switching chat rooms. (psuedo code)
-  // //buttons or link value will be the chatroom name.  
-  // topicButton.addEventListener('click', function (){
-  //   room = $(this).val(); //switching the variables
+  //Placeholder for switching chat rooms. (psuedo code)
+  //buttons or link value will be the chatroom name.  
+  topicButton.addEventListener('click', function () {
+    room = $(this).val(); //switching the variables
 
-  //   socket.on('connect', function() { //reusing what we just did above.
-  //     socket.emit('room', room);
-  //     console.log('Welcome to Topic:', room);
-  //    $.get('/api/messages/ + room, function(){
+    socket.on('connect', function () { //reusing what we just did above.
+      socket.emit('room', room);
+      console.log('Welcome to Topic:', room);
+      $.get('/api/messages', function (data, err) {
+        console.log(data);
+      });
 
-  //        })
+    });
 
-  //   });
-
-  // });
+  });
 
 
 
@@ -85,7 +85,7 @@ $(function () {
     let newMessage = {
       message: data.message,
       name: data.name,
-      topic: room 
+      topic: room
     }
 
     databaseMessage(newMessage);
