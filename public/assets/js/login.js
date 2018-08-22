@@ -19,12 +19,12 @@ $(function () {
 
             }
             else {
-                $('.modal-content').css('color', 'black');
-                $('.modal-title').html('You logged in!')
-                $('.modal-body').html('Go ahead and chat!')
+                // $('.modal-content').css('color', 'black');
+                // $('.modal-title').html('You logged in!')
+                // $('.modal-body').html('Go ahead and chat!')
                 $('#chat-link-button').show()
                 $('#close').hide();
-                $('#modal').modal('toggle')
+                // $('#modal').modal('toggle')
 
                 $('#login').hide();
                 $('#chat-main').show();
