@@ -61,7 +61,7 @@ app.post("/api/posts", function (req, res){
 
   //Creating Messages
   app.post("/api/messages", function (req, res) {
-    
+
     console.log(
       '\nAPI MESSAGE ROUTES CONSOLE LOG',
       req.body.name,
@@ -71,10 +71,10 @@ app.post("/api/posts", function (req, res){
     );
 
 
-      db.Message.create({
+    db.Message.create({
       user: req.body.name,
       message: req.body.message,
-      topic: req.body.topic 
+      topic: req.body.topic
     }).then(function (dbMessages) {
 
       res.json(dbMessages);
@@ -86,8 +86,18 @@ app.post("/api/posts", function (req, res){
     });
   });
 
-  //Getting messages
+  //Getting messages on specific topic
 
-  // app.get('/api/messages',)
+  app.get('/api/messages/:topic?', function (req, res) {
+    db.Message.findAll({
+      where: {
+        topic: req.params.topic
+      }
+
+    })
+      .then(function (dbMessage) {
+        res.json(dbMessage);
+      });
+  });
 
 }
