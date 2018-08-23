@@ -96,13 +96,13 @@ chat()
     console.log('\nThe Data from Event Listener',  "\n");
 
 
-    // let newMessage = {
-    //   message: data.message,
-    //   name: data.name,
-    //   topic: room
-    // }
+    let newMessage = {
+      message: message.value,
+      name: name.innerText,
+      topic: room
+    }
 
-    // databaseMessage(newMessage);
+    databaseMessage(newMessage);
 
     feedback.innerHTML = ''; //resets our feedback after a message is sent
 

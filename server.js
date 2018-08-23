@@ -52,16 +52,16 @@ io.on('connection', function (socket) {
   );
 
   let socketId = socket.id
-
+  socket.on('dis', function (dis) {
+    console.log("disconnected " + dis)
+    socket.leaveAll();
+    socket.leave(dis);
+    socket.to(dis).emit('User Left', socketId)
+  });
   //Code for switching rooms. (CHECK CHAT.JS FOR DEFAULTS AND WHERE THE CLIENT SWITCHES)
   socket.on('room', function (room) {
-    socket.on('dis', function () {
-      console.log("disconnected " + room)
-      socket.leaveAll();
-      socket.leave(room);
-      socket.to(room).emit('User Left', socketId)
-    });
-    socket.leaveAll();
+    
+    
     console.log("--------------")
     console.log(room);
     socket.join(room);
@@ -75,7 +75,7 @@ io.on('connection', function (socket) {
     //Server receiving the submitted data, and doing something
     //with it. In this case it's emitting it out.
     socket.on('chat' , function (data) {
-
+socket.leaveAll()
       console.log('\nThe Data in Server (server.js)', data, 'Room Name: ', room, "\n");
       io.to(room).emit('chat', data);
     });
