@@ -1,3 +1,4 @@
+
 //CODE FOR THE FRONT END.
 $(function () {
   $('#chat-main').hide();
@@ -9,13 +10,10 @@ $(function () {
 
 
   //Uses our connection to the server
-
-
-  var socket = io();
-
+  const socket = io();
 
   //Client side variables. AKA stuff from the DOM
-   let message = document.getElementById('message'),
+  const message = document.getElementById('message'),
     name = document.getElementById('username'),
     btn = document.getElementById('send-message'),
     output = document.getElementById('output'),
@@ -33,6 +31,7 @@ $(function () {
 
   //Switching Rooms
   $('.roomName').on('click', function () {
+
     console.log('Check current Room: ' + room);
 
     //resets chatbox
@@ -49,15 +48,12 @@ $(function () {
       chatLogs();
     });
     room = newRoom
-    return room;
   });
 
 
-  
-  });
 
   // emit/send to server on the click
-  $('#send-message').on('click', function () {
+  btn.addEventListener('click', function () {
     socket.emit('sendchat', {
       name: name.innerText,
       message: message.value,
@@ -91,17 +87,12 @@ $(function () {
     message.innerHTML = ''; //resets our message input?
 
     //Puts the message out into the HTML
-    output.innerHTML += '<p><strong>' +
-      name.innerText + ': </strong>' + message.value + '</p>';
+    output.innerHTML += '<p><strong>'
+      + data.name + ': </strong>' + data.message + '</p>';
 
     //puts chat to the bottom of window when new message pops up
     chatWindow.scrollTop = chatWindow.scrollHeight;
- })
-
-
-
-
-
+  });
 
 
   //Listen for typing event
@@ -139,3 +130,4 @@ $(function () {
   $('#topicBtn').on('click', function () {
     $('#topicModal').modal('toggle')
   });
+});
