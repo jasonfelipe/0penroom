@@ -148,6 +148,7 @@ $(function () {
         $.post('/api/posts/', newTopic, function (data, err){
           console.log(data);
         })
+        topics()
       };
 
 function topics(){
