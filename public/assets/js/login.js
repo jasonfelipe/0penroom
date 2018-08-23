@@ -13,9 +13,9 @@ $(function () {
         //checks to see if the login name is inside the database.
         $.get('/api/users/' + username, function (data, err) {
             if (!data || username === '') {
-                $('.modal-title').html('ERROR!')
-                $('.modal-content').css('color', 'red');
-                $('.modal-body').html('Please input a valid username, or please register.')
+                $('#modal-title').html('ERROR!')
+                $('#modal-content').css('color', 'red');
+                $('#modal-body').html('Please input a valid username, or please register.')
                 $('#chat-link-button').hide()
                 $('#modal').modal('toggle')
 
