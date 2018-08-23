@@ -3,7 +3,7 @@
 //THE DEPENENCIES
 const express = require("express");
 const bodyParser = require("body-parser");
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 //Sets up express
 const app = express();
@@ -108,8 +108,8 @@ io.on('connection', function (socket) {
 
 //Sequelize
 db.sequelize.sync({}).then(function () {
-  http.listen(PORT, function () {
-    console.log('\nlistening on *:' + PORT);
+  http.listen(port, function () {
+    console.log('\nlistening on *:' + port);
   });
 
 });
