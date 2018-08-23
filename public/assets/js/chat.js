@@ -33,14 +33,6 @@ $(function () {
 
   //Switching Rooms
   $('.roomName').on('click', function () {
-<<<<<<< HEAD
-    console.log("________________________")
-    console.log("Leaving room: " + room)
-    socket.emit('dis',room)
-    //leaving a room
-=======
-
->>>>>>> 30b4fbacd9d00513f5074b3917c9df908a3df928
     console.log('Check current Room: ' + room);
 
     //resets chatbox
