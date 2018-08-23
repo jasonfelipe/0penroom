@@ -51,17 +51,14 @@ module.exports = function (app) {
   //-----PLACE CODE FOR CREATING/UPDATING/GETTING/DELETING POSTS
 
 
-  //-----PLACE CODE FOR CREATING/UPDATING/GETTING MESSAGES
-
-
   //Creating Messages
   app.post("/api/messages", function (req, res) {
 
     console.log(
       '\nAPI MESSAGE ROUTES CONSOLE LOG',
-      req.body.name,
-      req.body.message,
-      req.body.topic,
+      '\nUSERNAME: ' + req.body.name,
+      '\nTHEIR MESSAGE: ' + req.body.message,
+      '\nIN WHAT TOPIC: ' + req.body.topic,
       "\n"
     );
 
