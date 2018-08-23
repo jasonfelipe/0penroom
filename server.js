@@ -46,40 +46,6 @@ require("./routes/api-routes.js")(app);
 //connection to server. The Callback function
 io.on('connection', function (socket) {
 
-<<<<<<< HEAD
-  //Clients have a unique ID each time they're connected, could be useful.
-  console.log(
-    "SOCKET ID: ", socket.id
-  );
-
-  let socketId = socket.id
-  socket.on('dis', function (dis) {
-    console.log("disconnected " + dis)
-    socket.leaveAll();
-    socket.leave(dis);
-    socket.to(dis).emit('User Left', socketId)
-  });
-  //Code for switching rooms. (CHECK CHAT.JS FOR DEFAULTS AND WHERE THE CLIENT SWITCHES)
-  socket.on('room', function (room) {
-    
-    
-    console.log("--------------")
-    console.log(room);
-    socket.join(room);
-    console.log('Connected to room:', room, "| Your Socket ID is: ", socketId);
-    socket.to(room).emit('User Joined', socketId);
-
-
-    
-
-
-    //Server receiving the submitted data, and doing something
-    //with it. In this case it's emitting it out.
-    socket.on('chat' , function (data) {
-socket.leaveAll()
-      console.log('\nThe Data in Server (server.js)', data, 'Room Name: ', room, "\n");
-      io.to(room).emit('chat', data);
-=======
 
   let socketId = socket.id
 
@@ -109,21 +75,12 @@ socket.leaveAll()
       console.log('\n' + socket.username + ' connected to room: ' + newRoom + " | Your Socket ID is: " + socketId + "\n");
       socket.to(newRoom).emit(socket.username + ' joined ' + newRoom);
       socket.room = newRoom
->>>>>>> 649acfea98433a3e9615f7436c7f85eabc2174c1
     });
 
 
     //Server receiving who is typing and then sending the data out.
     socket.on('typing', function (data) {
       //Socket syntax. This 'broadcast' puts a message to all users.
-<<<<<<< HEAD
-      socket.broadcast.to(room).emit('typing', data);
-    });
-
-    
-  });
-  
-=======
       socket.broadcast.to(socket.room).emit('typing', data);
     });
   });
@@ -134,7 +91,6 @@ socket.leaveAll()
   socket.on('disconnect', function () {
     console.log(socketId, 'has left');
   });
->>>>>>> 649acfea98433a3e9615f7436c7f85eabc2174c1
 });
 
 

@@ -15,7 +15,7 @@ $(function () {
 
 
   //Client side variables. AKA stuff from the DOM
-  const message = document.getElementById('message'),
+   let message = document.getElementById('message'),
     name = document.getElementById('username'),
     btn = document.getElementById('send-message'),
     output = document.getElementById('output'),
@@ -24,15 +24,7 @@ $(function () {
     
     
   let room = 'Main';
-<<<<<<< HEAD
-
-  //Code that connects to the room.
-  // socket.on('connect', function () {
-  //   socket.emit('room', room);
-  // });
-=======
   chatLogs();
->>>>>>> 649acfea98433a3e9615f7436c7f85eabc2174c1
 
 
   
@@ -43,16 +35,9 @@ $(function () {
     console.log("Leaving room: " + room)
     socket.emit('dis',room)
     //leaving a room
-<<<<<<< HEAD
-    socket.emit('connection')
-
-    console.log("ROOM -->", $(this)[0].innerHTML);
-
-=======
     console.log('Check current Room: ' + room);
     
     //resets chatbox
->>>>>>> 649acfea98433a3e9615f7436c7f85eabc2174c1
     output.innerHTML = ""
     
     console.log("ROOM -->"+ $(this)[0].innerHTML);
@@ -62,37 +47,21 @@ $(function () {
     console.log('Welcome to Topic:' + newRoom);
     chatLogs();
 
-<<<<<<< HEAD
-      for (var i = 0; i < data.length; i++) {
-        output.innerHTML += '<p><strong>' +
-          data[i].user + ': </strong>' + data[i].message + '</p>';;
-      }
-
-      chatWindow.scrollTop = chatWindow.scrollHeight;
-      return room;
-    });
-=======
     room = newRoom
+    return room;
   });
 
->>>>>>> 649acfea98433a3e9615f7436c7f85eabc2174c1
 
   
   });
 
   // emit/send to server on the click
-  btn.addEventListener('click', function () {
+  $('#send-message').on('click', function () {
     socket.emit('sendchat', {
       message: message.value,
       name: name.innerText,
       topic: room
     });
-<<<<<<< HEAD
-
-chat()
-
-=======
->>>>>>> 649acfea98433a3e9615f7436c7f85eabc2174c1
   });
   
   
@@ -103,16 +72,6 @@ chat()
   });
   
   //Listen for message event
-<<<<<<< HEAD
-  function chat(){
-  
-    console.log('\nThe Data from Event Listener',  "\n");
-
-
-    let newMessage = {
-      message: message.value,
-      name: name.innerText,
-=======
   socket.on('updatechat', function (username, data) {
     console.log('\nThe Data from Event Listener \nusername: ' + username + '\ndata: ' + data.name, data.message + "\n");
     
@@ -120,7 +79,6 @@ chat()
     let newMessage = {
       user: username,
       message: data.message,
->>>>>>> 649acfea98433a3e9615f7436c7f85eabc2174c1
       topic: room
     }
   
@@ -137,7 +95,7 @@ chat()
 
     //puts chat to the bottom of window when new message pops up
     chatWindow.scrollTop = chatWindow.scrollHeight;
- }
+ })
 
 
 
@@ -179,4 +137,3 @@ chat()
   $('#topicBtn').on('click', function () {
     $('#topicModal').modal('toggle')
   });
-});
