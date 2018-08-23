@@ -1,6 +1,8 @@
 //Stuff to do.
 //Make sure no one else can log in as user as long as they are there.
 $(function () {
+    const socket = io();
+
     $('#login-button').on('click', function () {
         loginUser();
     });
@@ -19,17 +21,14 @@ $(function () {
 
             }
             else {
-                // $('.modal-content').css('color', 'black');
-                // $('.modal-title').html('You logged in!')
-                // $('.modal-body').html('Go ahead and chat!')
                 $('#chat-link-button').show()
                 $('#close').hide();
-                // $('#modal').modal('toggle')
 
                 $('#login').hide();
                 $('#chat-main').show();
 
-
+                socket.emit('login', username);
+                
                 $('#username').text(username)
                 return username;
             }

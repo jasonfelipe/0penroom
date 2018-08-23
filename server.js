@@ -46,6 +46,7 @@ require("./routes/api-routes.js")(app);
 //connection to server. The Callback function
 io.on('connection', function (socket) {
 
+<<<<<<< HEAD
   //Clients have a unique ID each time they're connected, could be useful.
   console.log(
     "SOCKET ID: ", socket.id
@@ -78,19 +79,64 @@ io.on('connection', function (socket) {
 socket.leaveAll()
       console.log('\nThe Data in Server (server.js)', data, 'Room Name: ', room, "\n");
       io.to(room).emit('chat', data);
+=======
+
+  let socketId = socket.id
+
+  socket.on('login', function (username) {
+    socket.username = username
+    socket.room = 'Main'
+    socket.join('Main', function () {
+      console.log('\n' + socket.username + ' joined Main\n')
+    });
+
+  });
+
+  //Server receiving the submitted data, and doing something
+  //with it. In this case it's emitting it out.
+  socket.on('sendchat', function (data) {
+    console.log('\nThe Data in Server (server.js) Username:' + socket.username + ' Data: ' + data + ' Room Name: ' + socket.room + "\n");
+    io.to(socket.room).emit('updatechat', socket.username, data);  
+  });
+
+  //Code for switching rooms.
+  socket.on('switch', function (newRoom) {
+    socket.leave(socket.room, function () {
+      console.log("\n" + socket.username + ' has left ' + socket.room);
+    });
+
+    socket.join(newRoom, function (err) {
+      console.log('\n' + socket.username + ' connected to room: ' + newRoom + " | Your Socket ID is: " + socketId + "\n");
+      socket.to(newRoom).emit(socket.username + ' joined ' + newRoom);
+      socket.room = newRoom
+>>>>>>> 649acfea98433a3e9615f7436c7f85eabc2174c1
     });
 
 
     //Server receiving who is typing and then sending the data out.
     socket.on('typing', function (data) {
       //Socket syntax. This 'broadcast' puts a message to all users.
+<<<<<<< HEAD
       socket.broadcast.to(room).emit('typing', data);
     });
 
     
   });
   
+=======
+      socket.broadcast.to(socket.room).emit('typing', data);
+    });
+  });
+
+
+
+
+  socket.on('disconnect', function () {
+    console.log(socketId, 'has left');
+  });
+>>>>>>> 649acfea98433a3e9615f7436c7f85eabc2174c1
 });
+
 
 //Sequelize
 db.sequelize.sync({}).then(function () {
