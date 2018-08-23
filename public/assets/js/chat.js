@@ -25,6 +25,7 @@ $(function () {
   //default Room
   let room = 'Main';
   chatLogs();
+  topics();
 
 
 
@@ -131,3 +132,31 @@ $(function () {
     $('#topicModal').modal('toggle')
   });
 });
+
+// new topic post
+
+
+      $("#dbTopic").on('click', function(){
+        let newTopic = {
+          title: $('#title').val().trim(),
+          description: $("#description").val().trim()
+        }
+        addTopic(newTopic)
+      });
+      function addTopic(newTopic){
+        console.log(newTopic)
+        $.post('/api/posts/', newTopic, function (data, err){
+          console.log(data);
+        })
+      };
+
+function topics(){
+  $.get('/api/posts/', function(data, err){
+    console.log(data)
+    for (var i = 0; i<data.length; i++){
+      $("#homeSubmenu").append("<li id='menuBar'><button class='roomName'>"+data[i].title+"</button></li>")
+    }
+  })
+}
+
+      

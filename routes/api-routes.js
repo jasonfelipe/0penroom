@@ -50,9 +50,18 @@ module.exports = function (app) {
 
   //-----PLACE CODE FOR CREATING/UPDATING/GETTING/DELETING POSTS
 app.post("/api/posts", function (req, res){
-
+console.log(req.body.title)
   db.Post.create({
-    
+    title: req.body.title,
+    description: req.body.description
+  }).then(function(newTopic){
+    res.json(newTopic);
+  })
+})
+app.get("/api/posts", function (req,res){
+  db.Post.findAll({})
+  .then(function (grabT){
+    res.json(grabT)
   })
 })
 
