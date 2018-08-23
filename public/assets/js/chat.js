@@ -43,7 +43,7 @@ $(function () {
 
     console.log('Welcome to Topic:' + newRoom); //sending the subscribe to the server aka pls join this room.
 
-    socket.emit('switch', newRoom, function (data){
+    socket.emit('switch', newRoom, function (data) {
       console.log(data);
       chatLogs();
     });
@@ -59,28 +59,28 @@ $(function () {
       message: message.value,
       topic: room
     });
+    //Putting the new message into a sequelize object
+    let newMessage = {
+      name: name.innerText,
+      message: message.value,
+      topic: room
+    }
+
+    //Using the function below to post into the database
+    databaseMessage(newMessage);
   });
 
 
   //Now this looks for the 'keypress' event on the message.
   //this allows for us to have a 'name' is typing message.
   message.addEventListener('keypress', function () {
-    socket.emit('typing' + name.innerText);
+    socket.emit('typing',name.innerText);
   });
 
   //Listen for message event
   socket.on('updatechat', function (username, data) {
     console.log('\nThe Data from Event Listener \nusername: ' + username + '\ndata: ' + data.name, data.message + "\n" + 'room: ' + room);
 
-    //Putting the new message into a sequelize object
-    let newMessage = {
-      name: data.name,
-      message: data.message,
-      topic: room
-    }
-
-    //Using the function below to post into the database
-    databaseMessage(newMessage);
 
     feedback.innerHTML = ''; //resets our feedback after a message is sent
 

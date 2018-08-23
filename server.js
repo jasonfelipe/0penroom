@@ -66,13 +66,25 @@ io.on('connection', function (socket) {
   socket.on('switch', function (newRoom, fn) {
     socket.leave(socket.room, function () {
       console.log("\n" + socket.username + ' has left ' + socket.room);
+      socket.broadcast.to(socket.room).emit('updatechat', socket.username,
+        data =
+        {
+          name: 'SERVER',
+          message: '<strong>' + socket.username + '</strong>' + ' has left'
+        }
+      );
     });
     socket.join(newRoom, function (err) {
       console.log('\n' + socket.username + ' connected to room: ' + newRoom + " | Your Socket ID is: " + socketId + "\n");
-      socket.to(newRoom).emit(socket.username + ' joined ' + newRoom);
+      socket.to(newRoom).emit('updatechat', socket.username,
+        data = {
+          name: 'SERVER',
+          message: '<strong>' + socket.username +'</strong>' + ' joined ' + newRoom
+        }
+      );
       socket.room = newRoom
     });
-    fn('Complete');
+    fn('Room Switch Complete');
 
   });
 
