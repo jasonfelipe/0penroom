@@ -53,27 +53,27 @@ io.on('connection', function (socket) {
   //with it. In this case it's emitting it out.
   socket.on('sendchat', function (data) {
     console.log('\nThe Data in Server (server.js) Username:' + socket.username + ' Data: ' + data + ' Room Name: ' + socket.room + "\n");
-    io.to(socket.room).emit('updatechat', socket.username, data);  
+    io.to(socket.room).emit('updatechat', socket.username, data);
+  });
+
+  //Server receiving who is typing and then sending the data out.
+  socket.on('typing', function (data) {
+    //Socket syntax. This 'broadcast' puts a message to all users.
+    socket.broadcast.to(socket.room).emit('typing', data);
   });
 
   //Code for switching rooms.
-  socket.on('switch', function (newRoom) {
+  socket.on('switch', function (newRoom, fn) {
     socket.leave(socket.room, function () {
       console.log("\n" + socket.username + ' has left ' + socket.room);
     });
-
     socket.join(newRoom, function (err) {
       console.log('\n' + socket.username + ' connected to room: ' + newRoom + " | Your Socket ID is: " + socketId + "\n");
       socket.to(newRoom).emit(socket.username + ' joined ' + newRoom);
       socket.room = newRoom
     });
+    fn('Complete');
 
-
-    //Server receiving who is typing and then sending the data out.
-    socket.on('typing', function (data) {
-      //Socket syntax. This 'broadcast' puts a message to all users.
-      socket.broadcast.to(socket.room).emit('typing', data);
-    });
   });
 
 
