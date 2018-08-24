@@ -19,7 +19,6 @@
 <font color="blue">
 * Express <br>
 * mysql2 <br>
-* path <br>
 * body-parser <br>
 * socket.io <br>
 </font>
