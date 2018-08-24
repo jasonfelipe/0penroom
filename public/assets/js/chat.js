@@ -98,6 +98,8 @@ $(function () {
     //Using the function below to post into the database
     databaseMessage(newMessage);
     topics();
+    $("#output").empty()
+    chatLogs();
   });
 
 
@@ -184,4 +186,4 @@ $(function () {
 
 
 
-});
+});   
