@@ -12,6 +12,7 @@
 
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Farsan" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/login.css">
@@ -60,34 +61,37 @@
         <div class="wrapper">
             <nav id="sidebar">
                 <!-- Sidebar Header -->
-                <div class="sidebar-header">
+                <div id="opacity" class="sidebar-header">
                     <h3>MENU</h3>
                 </div>
                 <br>
                 <!-- Sidebar Links -->
                 <ul class="list-unstyled components">
                     <li id="menuBar" class="active">
-                        <a href="#">About</a>
+                        <a href="#" class="font"><strong>About</strong></a>
                     </li>
                     <!-- <li><a href="#">About</a></li> -->
+                    <hr>
                     <li>
                         <!-- Link with dropdown items -->
                         <li id="menuBar">
-                            <a href="#">Contact</a>
+                            <a href="#" class="font"><strong>Contact</strong></a>
                         </li>
-                        <a id="menuBar" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Topics</a>
+                        <hr>
+                        <a id="menuBar" class="font" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"><strong>Topics</strong></a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
                             <li id="menuBar">
-                                <a href="#">Top 1</a>
+                                <a href="#" class="font">Top 1</a>
                             </li>
                             <li id="menuBar">
-                                <a href="#">Top 2</a>
+                                <a href="#" class="font">Top 2</a>
                             </li>
                             <li id="menuBar">
-                                <a href="#">Top 3</a>
+                                <a href="#" class="font">Top 3</a>
                             </li>
                         </ul>
-                        <li><a href="#" id="topicBtn">New Topic</a></li>
+                        <hr>
+                        <li><span class="center"><button type="button" id="topicBtn" class="font"><strong>Create New Topic</strong></button></span></li>
                 </ul>
             </nav>
 
@@ -124,7 +128,7 @@
             <!-- Place for username -->
             <div id=username></div>
             <!-- Message Input -->
-            <input id='message' type='text' placeholder='Your message' />
+            <input id='message' type='text' placeholder='Type your message here...' />
             <button class='btn-primary' id='send-message'>Send</button>
         </div>
 
