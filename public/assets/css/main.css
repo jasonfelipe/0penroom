@@ -340,6 +340,11 @@ body {
   background: linear-gradient(0deg, #dbdbdb, #416b92 70%) no-repeat;
   font-family: "Calibri", "Roboto", sans-serif;
 }
+
+/* #about-page {
+  height: 100vh;
+} */
+
 /* =============== HEADER ============== */
 .header-div {
   text-align: center;
@@ -365,7 +370,7 @@ body {
 
 img {
   width: 200px;
-  height: 200px;
+  height: 185px;
 }
 
 /* =============== FOOTER  ============= */
