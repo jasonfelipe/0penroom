@@ -76,6 +76,7 @@ $(function () {
       chatLogs();
     });
     room = newRoom
+    topics();
   });
 
 
@@ -96,6 +97,7 @@ $(function () {
 
     //Using the function below to post into the database
     databaseMessage(newMessage);
+    topics();
   });
 
 
@@ -166,7 +168,7 @@ $(function () {
       description: $("#description").val().trim()
     }
     addTopic(newTopic, function () {
-      $('#homeSubmenu').append("<li id='menuBar'><button class='roomName'>" + newTopic.title + "</button></li>")
+      $('#homeSubmenu').append("<li id='menuBar'><button class='roomName font'>" + newTopic.title + "</button></li>")
     });
   });
 
