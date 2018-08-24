@@ -107,7 +107,7 @@ io.on('connection', function (socket) {
 
 
 //Sequelize
-db.sequelize.sync({}).then(function () {
+db.sequelize.sync({force:true}).then(function () {
   http.listen(port, function () {
     console.log('\nlistening on *:' + port);
   });
