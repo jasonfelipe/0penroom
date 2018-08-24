@@ -9,7 +9,10 @@ $(function () {
 
 
   //Uses our connection to the server
-  const socket = io();
+
+
+  var socket = io();
+
 
   //Client side variables. AKA stuff from the DOM
   const message = document.getElementById('message'),
@@ -115,8 +118,8 @@ $(function () {
     message.innerHTML = ''; //resets our message input?
 
     //Puts the message out into the HTML
-    output.innerHTML += '<p><strong>'
-      + data.name + ': </strong>' + data.message + '</p>';
+    output.innerHTML += '<p><strong>' +
+      data.name + ': </strong>' + data.message + '</p>';
 
     //puts chat to the bottom of window when new message pops up
     chatWindow.scrollTop = chatWindow.scrollHeight;
