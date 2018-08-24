@@ -168,9 +168,9 @@ $(function () {
       title: $('#title').val().trim(),
       description: $("#description").val().trim()
     }
-    addTopic(newTopic, function () {
-      $('#homeSubmenu').append("<li id='menuBar'><button class='roomName'>" + newTopic.title + "</button></li>")
-    });
+    // addTopic(newTopic, function () {
+    //   $('#homeSubmenu').append("<li id='menuBar'><button class='roomName'>" + newTopic.title + "</button></li>")
+    // });
   });
 
   function addTopic(newTopic, cb) {
