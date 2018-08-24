@@ -7,12 +7,9 @@ $(function () {
     $(this).toggleClass('active');
   });
 
-});
+
   //Uses our connection to the server
-
-
-  var socket = io();
-
+  const socket = io();
 
   //Client side variables. AKA stuff from the DOM
   const message = document.getElementById('message'),
@@ -79,6 +76,7 @@ $(function () {
       chatLogs();
     });
     room = newRoom
+    topics();
   });
 
 
@@ -99,6 +97,7 @@ $(function () {
 
     //Using the function below to post into the database
     databaseMessage(newMessage);
+    topics();
   });
 
 
@@ -118,8 +117,8 @@ $(function () {
     message.innerHTML = ''; //resets our message input?
 
     //Puts the message out into the HTML
-    output.innerHTML += '<p><strong>' +
-      data.name + ': </strong>' + data.message + '</p>';
+    output.innerHTML += '<p><strong>'
+      + data.name + ': </strong>' + data.message + '</p>';
 
     //puts chat to the bottom of window when new message pops up
     chatWindow.scrollTop = chatWindow.scrollHeight;
@@ -151,7 +150,7 @@ $(function () {
       //looping through the database object
       for (var i = 0; i < data.length; i++) {
         output.innerHTML += '<p><strong>'
-        + data[i].user + ':</strong>' + data[i].message + '</p>';;
+          + data[i].user + ': </strong>' + data[i].message + '</p>';;
       }
       chatWindow.scrollTop = chatWindow.scrollHeight;
     });
@@ -169,7 +168,7 @@ $(function () {
       description: $("#description").val().trim()
     }
     addTopic(newTopic, function () {
-      $('#homeSubmenu').append("<li id='menuBar'><button class='roomName'>" + newTopic.title + "</button></li>")
+      $('#homeSubmenu').append("<li id='menuBar'><button class='roomName font'>" + newTopic.title + "</button></li>")
     });
   });
 
@@ -185,3 +184,4 @@ $(function () {
 
 
 
+});
