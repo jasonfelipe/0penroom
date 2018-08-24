@@ -12,10 +12,11 @@
 
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Farsan" rel="stylesheet">
 
     <!-- Custom CSS -->
     <!-- <link rel="stylesheet" href="assets/css/about.css"> -->
-    <!-- <link rel="stylesheet" href="assets/css/login.css"> -->
+    <!-- <link rel="stylesheet" href="assets/css/chat.css"> -->
     <link rel="stylesheet" href="assets/css/main.css">
 
 
@@ -61,35 +62,56 @@
         <div class="wrapper">
             <nav id="sidebar">
                 <!-- Sidebar Header -->
-                <div class="sidebar-header">
-                    <h3>MENU</h3>
+                <div id="opacity" class="sidebar-header">
+                    <h3>
+                        <b>MENU </b>
+                    </h3>
                 </div>
                 <br>
                 <!-- Sidebar Links -->
                 <ul class="list-unstyled components">
                     <li id="menuBar" class="active">
-                        <a href="#" id=aboutLink>About</a>
+                        <a href="#" class="font" id=aboutLink>
+                            <b>About</b>
+                        </a>
                     </li>
                     <!-- <li><a href="#">About</a></li> -->
+                    <hr>
                     <li>
                         <!-- Link with dropdown items -->
                         <li id="menuBar">
-                            <a href="#">Contact</a>
+                            <a href="#" class="font">
+                                <b>Contact</b>
+                            </a>
                         </li>
-                        <a id="menuBar" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Topics</a>
+                        <hr>
+                        <a id="menuBar" class="font" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
+                            <b>Topics</b>
+                        </a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
                             <li id="menuBar">
-                                <button class='roomName'>Main</button>
+                                <button class='roomName font'>
+                                    <b> Main</b>
+                                </button>
                             </li>
                             <li id="menuBar">
-                                <button class='roomName'>Test 2</button>
+                                <button class='roomName font'>
+                                    <b> Test 2</b>
+                                </button>
                             </li>
                             <li id="menuBar">
-                                <button class='roomName'>Test 3</button>
+                                <button class='roomName font'>
+                                    <b>Test 3</b>
+                                </button>
                             </li>
                         </ul>
+                        <hr>
                         <li>
-                            <a href="#" id="topicBtn">New Topic</a>
+                            <span class="center">
+                                <button type="button" id="topicBtn" class="font">
+                                    <b>Create New Topic</b>
+                                </button>
+                            </span>
                         </li>
                 </ul>
             </nav>
@@ -122,96 +144,82 @@
 
             </div>
 
-
-            <div class='row' id='feedback'></div>
             <!-- Place for username -->
             <div id=username></div>
             <!-- Message Input -->
-            <input id='message' type='text' placeholder='Your message' />
-            <button class='btn-primary' id='send-message'>Send</button>
+            <input id='message' type='text' placeholder='Type your message here...' />
+            <button class='btn btn-secondary btn-sm' id='send-message'>Send</button>
+            <div class='row' id='feedback'></div>
         </div>
 
         <!-- END OF CHAT BOX -->
     </div>
 
 
+
     <div class="container" id=about-page>
-        <div class="row header-row">
-            <div class="col-sm-11 col-md-11 col-lg-11 header-div">
-                <h1 class="about-h1">ABOUT</h1>
-            </div>
-            <div class="row">
-                <div class="col-sm-3 col-md-3 col-lg-3 col1">
-                    <img class="bio-pic z-depth-5" src="assets/images/p1_abt_pic.jpg" alt="Paulo Pic">
+            <div class="row header-row">
+                <div class="col-sm-11 col-md-11 col-lg-11 header-div">
+                    <h1 class="about-h1">ABOUT</h1>
                 </div>
-                <div class="col-sm-8 col-md-8 col-lg-8 col1">
-                    <p>Developer in the making.  With over 20 years of tourism and hospitality industry, I was looking for a career change and a good challenge. Found it!  Having researched the programming world, it offered a lot of what I was looking for.  Although I am open to options, my hope is that I can work for a company that is involed within the tourism sector.
-
-                    <a href="https://pbaazphx18.github.io/Basic-Portfolio">Explore my Portfolio</a>
-                    </p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-3 col-md-3 col-lg-3 col1">
-                    PIC - 2
-                    <img src="">
-                </div>
-                <div class="col-sm-8 col-md-8 col-lg-8 col1">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt dolorum quae necessitatibus labore expedita
-                        libero repudiandae adipisci, maiores voluptatum voluptas eos dolore, nostrum, iusto repellendus inventore
-                        quis at pariatur explicabo!</p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-3 col-md-3 col-lg-3 col1">
-                    PIC - 3
-                    <img src="">
-                </div>
-                <div class="col-sm-8 col-md-8 col-lg-8 col1">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt dolorum quae necessitatibus labore expedita
-                        libero repudiandae adipisci, maiores voluptatum voluptas eos dolore, nostrum, iusto repellendus inventore
-                        quis at pariatur explicabo!</p>
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-sm-3 col-md-3 col-lg-3 col1">
-                    PIC - 4
-                    <img src="">
-                </div>
-                <div class="col-sm-8 col-md-8 col-lg-8 col1">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt dolorum quae necessitatibus labore expedita
-                        libero repudiandae adipisci, maiores voluptatum voluptas eos dolore, nostrum, iusto repellendus inventore
-                        quis at pariatur explicabo!</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-3 col-md-3 col-lg-3 col1">
-                PIC - 4
-                <img src="">
-            </div>
-            <div class="col-sm-8 col-md-8 col-lg-8 col1">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt dolorum quae necessitatibus labore expedita
-                    libero repudiandae adipisci, maiores voluptatum voluptas eos dolore, nostrum, iusto repellendus inventore
-                    quis at pariatur explicabo!</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-3 col-md-3 col-lg-3 col1">
-                <img src="https://media.licdn.com/dms/image/C5603AQG573U_XuvQMA/profile-displayphoto-shrink_200_200/0?e=1540425600&v=beta&t=HWDvZ3QSaglm_sXVNNQI-oo-4iEaj_AD8UUQ9LgGNxg" alt="Jason's Smiling Face">
-            </div>
-            
-            <div class="col-sm-8 col-md-8 col-lg-8 col1">
-                    <a href="https://www.linkedin.com/in/jason-felipe-089558107/">Visit Jason Linkedin!</a>
-                    <br><a href="https://github.com/jasonfelipe">Visit Jason GitHub!</a>
-                    <br><a href="https://jasonfelipe.github.io/Bootstrap-Portfolio/">View Jason's Portfolio Page!</a>
-            </div>
-        </div>
-        <button id=closeAbout>Close</button>
-    </div>
+                <div class="row">
+                    <div class="col-sm-3 col-md-3 col-lg-3 col1">
+                        <img class="bio-pic z-depth-5" src="assets/images/p1_abt_pic.jpg" alt="Paulo Pic">
+                    </div>
+                    <div class="col-sm-8 col-md-8 col-lg-8 col1">
+                        <p>Developer in the making. With over 20 years of tourism and hospitality industry, I was looking for a
+                            career change and a good challenge. Found it! Having researched the programming world, it offered
+                            a lot of what I was looking for. Although I am open to options, my hope is that I can work for a
+                            company that is involed within the tourism sector.
+    
+                            <a href="https://pbaazphx18.github.io/Basic-Portfolio">Explore my Portfolio</a>
+                        </p>
+                    </div>
+    
+                    <div class="row">
+                        <div class="col-sm-3 col-md-3 col-lg-3 col1">
+                            PIC - 4
+                            <img src="">
+                        </div>
+                        <div class="col-sm-8 col-md-8 col-lg-8 col1">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt dolorum quae necessitatibus labore
+                                expedita libero repudiandae adipisci, maiores voluptatum voluptas eos dolore, nostrum, iusto
+                                repellendus inventore quis at pariatur explicabo!</p>
+                        </div>
+                    </div>
+                    <div class="row col-lg-12">
+                        <div class="col-sm-3 col-md-3 col-lg-3 col1">
+                            
+                            <img src="assets/images/profile.jpg">
+                        </div>
+                        <div class="col-sm-8 col-md-8 col-lg-8 col1">
+                            <p><a href="https://www.linkedin.com/in/garrettlee-davis-a51654112/">Visit Garrett on Linkedin!</a>
+                                <br>
+                                <a href="https://github.com/gladavis89">Visit Garrett on GitHub!</a>
+                                <br>
+                                <a href="https://dtechdev.com/portfolio.html">View Garrett's Portfolio Page!</a></p>
+                        </div>
+                    </div>
+                    <div class="row col-lg-12">
+                        <div class="col-sm-3 col-md-3 col-lg-3 col1">
+                            <img src="https://media.licdn.com/dms/image/C5603AQG573U_XuvQMA/profile-displayphoto-shrink_200_200/0?e=1540425600&v=beta&t=HWDvZ3QSaglm_sXVNNQI-oo-4iEaj_AD8UUQ9LgGNxg"
+                                alt="Jason's Smiling Face">
+                        </div>
+    
+                        <div class="col-sm-8 col-md-8 col-lg-8 col1">
+                            <p>
+                            <a href="https://www.linkedin.com/in/jason-felipe-089558107/">Visit Jason Linkedin!</a>
+                            <br>
+                            <a href="https://github.com/jasonfelipe">Visit Jason GitHub!</a>
+                            <br>
+                            <a href="https://jasonfelipe.github.io/Bootstrap-Portfolio/">View Jason's Portfolio Page!</a>
+                                </p>
+                        </div>
+                        <button id=closeAbout>Close</button>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
 
 
 
