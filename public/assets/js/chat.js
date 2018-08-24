@@ -1,4 +1,3 @@
-
 //CODE FOR THE FRONT END.
 $(function () {
   $('#chat-main').hide();
@@ -27,12 +26,40 @@ $(function () {
   chatLogs();
   topics();
 
+  function topics() {
+    $.get('/api/posts/', function (data, err) {
+      console.log(data);
+      $('#homeSubmenu').empty();
+      for (var i = 0; i < data.length; i++) {
+        $("#homeSubmenu").append("<li id='menuBar'><button class='roomName'>" + data[i].title + "</button></li>")
+      }
+      $('.roomName').on('click', function () {
+        console.log(this)
+        console.log('Check current Room: ' + room);
 
+        //resets chatbox
+        output.innerHTML = ""
+
+        console.log("ROOM -->" + $(this)[0].innerHTML);
+
+        newRoom = $(this)[0].innerHTML; //switching the variables
+
+        console.log('Welcome to Topic:' + newRoom); //sending the subscribe to the server aka pls join this room.
+
+        socket.emit('switch', newRoom, function (data) {
+          console.log(data);
+          chatLogs();
+        });
+        room = newRoom
+      });
+    });
+
+  }
 
 
   //Switching Rooms
   $('.roomName').on('click', function () {
-
+    console.log(this)
     console.log('Check current Room: ' + room);
 
     //resets chatbox
@@ -73,9 +100,9 @@ $(function () {
 
 
   //Now this looks for the 'keypress' event on the message.
-  //this allows for us to have a 'name' is typing message.
+  //this allows for us to have a 'nagla.davis89@gmail.comgla.davis89@gmail.comgla.davis89@gmail.comme' is typing message.
   message.addEventListener('keypress', function () {
-    socket.emit('typing',name.innerText);
+    socket.emit('typing', name.innerText);
   });
 
   //Listen for message event
@@ -131,33 +158,28 @@ $(function () {
   $('#topicBtn').on('click', function () {
     $('#topicModal').modal('toggle')
   });
-});
 
-// new topic post
-
-
-      $("#dbTopic").on('click', function(){
-        let newTopic = {
-          title: $('#title').val().trim(),
-          description: $("#description").val().trim()
-        }
-        addTopic(newTopic)
-      });
-      function addTopic(newTopic){
-        console.log(newTopic)
-        $.post('/api/posts/', newTopic, function (data, err){
-          console.log(data);
-        })
-        topics()
-      };
-
-function topics(){
-  $.get('/api/posts/', function(data, err){
-    console.log(data)
-    for (var i = 0; i<data.length; i++){
-      $("#homeSubmenu").append("<li id='menuBar'><button class='roomName'>"+data[i].title+"</button></li>")
+  // new topic post
+  $("#dbTopic").on('click', function () {
+    let newTopic = {
+      title: $('#title').val().trim(),
+      description: $("#description").val().trim()
     }
-  })
-}
+    addTopic(newTopic, function () {
+      $('#homeSubmenu').append("<li id='menuBar'><button class='roomName'>" + newTopic.title + "</button></li>")
+    });
+  });
 
-      
+  function addTopic(newTopic, cb) {
+    console.log(newTopic)
+    $.post('/api/posts/', newTopic, function (data, err) {
+      console.log(data);
+      topics();
+    });
+    cb();
+  };
+
+
+
+
+});
