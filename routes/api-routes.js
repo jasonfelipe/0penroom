@@ -49,27 +49,38 @@ module.exports = function (app) {
   });
 
   //-----PLACE CODE FOR CREATING/UPDATING/GETTING/DELETING POSTS
-
-
-  //-----PLACE CODE FOR CREATING/UPDATING/GETTING MESSAGES
-
+app.post("/api/posts", function (req, res){
+console.log(req.body.title)
+  db.Post.create({
+    title: req.body.title,
+    description: req.body.description
+  }).then(function(newTopic){
+    res.json(newTopic);
+  })
+})
+app.get("/api/posts", function (req,res){
+  db.Post.findAll({})
+  .then(function (grabT){
+    res.json(grabT)
+  })
+})
 
   //Creating Messages
   app.post("/api/messages", function (req, res) {
-    
+
     console.log(
       '\nAPI MESSAGE ROUTES CONSOLE LOG',
-      req.body.name,
-      req.body.message,
-      req.body.topic,
+      '\nUSERNAME: ' + req.body.name,
+      '\nTHEIR MESSAGE: ' + req.body.message,
+      '\nIN WHAT TOPIC: ' + req.body.topic,
       "\n"
     );
 
 
-      db.Message.create({
+    db.Message.create({
       user: req.body.name,
       message: req.body.message,
-      topic: req.body.topic 
+      topic: req.body.topic
     }).then(function (dbMessages) {
 
       res.json(dbMessages);
@@ -81,8 +92,18 @@ module.exports = function (app) {
     });
   });
 
-  //Getting messages
+  //Getting messages on specific topic
 
-  // app.get('/api/messages',)
+  app.get('/api/messages/:topic?', function (req, res) {
+    db.Message.findAll({
+      where: {
+        topic: req.params.topic
+      }
+
+    })
+      .then(function (dbMessage) {
+        res.json(dbMessage);
+      });
+  });
 
 }

@@ -8,10 +8,6 @@ $(function () {
   });
 
 
-
-  //==============BE WARNED!=============
-  // THE REST OF THIS CODE USES VANILLA JAVASCRIPT!!! (with socket.io)
-
   //Uses our connection to the server
 
 
@@ -24,82 +20,70 @@ $(function () {
     btn = document.getElementById('send-message'),
     output = document.getElementById('output'),
     feedback = document.getElementById('feedback'),
-    chatWindow = document.getElementById("chat-window");
+    chatWindow = document.getElementById("chat-window")
 
 
 
-  //Default Room.
+  //default Room
   let room = 'Main';
-
-  //Code that connects to the room.
-  socket.on('connect', function () {
-    socket.emit('room', room);
-  });
+  chatLogs();
+  topics();
 
 
 
-  //Placeholder for switching chat rooms. (psuedo code)
-  //buttons or link value will be the chatroom name.  
+
+  //Switching Rooms
   $('.roomName').on('click', function () {
-    console.log("________________________")
-    console.log("Leaving room: " + room)
-    //leaving a room
 
-    console.log("ROOM -->", $(this)[0].innerHTML);
+    console.log('Check current Room: ' + room);
 
+    //resets chatbox
     output.innerHTML = ""
 
-    room = $(this)[0].innerHTML; //switching the variables
-    socket.emit('room', room);
-    console.log('Welcome to Topic:', room);
-    $.get('/api/messages/' + room, function (data, err) {
-      console.log("Console logging data in chat.js", data)
+    console.log("ROOM -->" + $(this)[0].innerHTML);
 
-      for (var i = 0; i < data.length; i++) {
-        output.innerHTML += '<p><strong>' +
-          data[i].user + ': </strong>' + data[i].message + '</p>';;
-      }
+    newRoom = $(this)[0].innerHTML; //switching the variables
 
-      chatWindow.scrollTop = chatWindow.scrollHeight;
-      return room;
+    console.log('Welcome to Topic:' + newRoom); //sending the subscribe to the server aka pls join this room.
+
+    socket.emit('switch', newRoom, function (data) {
+      console.log(data);
+      chatLogs();
     });
+    room = newRoom
   });
 
 
 
   // emit/send to server on the click
   btn.addEventListener('click', function () {
-    // syntax to send stuff to the server
-    // 'chat' is the name of the message parameter, 
-    // second parameter is the data we are sending, the message and name
-    socket.emit('chat', {
-      message: message.value,
+    socket.emit('sendchat', {
       name: name.innerText,
+      message: message.value,
       topic: room
     });
+    //Putting the new message into a sequelize object
+    let newMessage = {
+      name: name.innerText,
+      message: message.value,
+      topic: room
+    }
 
-
-
+    //Using the function below to post into the database
+    databaseMessage(newMessage);
   });
+
 
   //Now this looks for the 'keypress' event on the message.
   //this allows for us to have a 'name' is typing message.
   message.addEventListener('keypress', function () {
-    socket.emit('typing', name.innerText);
+    socket.emit('typing',name.innerText);
   });
 
   //Listen for message event
-  socket.on('chat', function (data) {
-    console.log('\nThe Data from Event Listener', data, "\n");
+  socket.on('updatechat', function (username, data) {
+    console.log('\nThe Data from Event Listener \nusername: ' + username + '\ndata: ' + data.name, data.message + "\n" + 'room: ' + room);
 
-
-    let newMessage = {
-      message: data.message,
-      name: data.name,
-      topic: room
-    }
-
-    databaseMessage(newMessage);
 
     feedback.innerHTML = ''; //resets our feedback after a message is sent
 
@@ -120,18 +104,62 @@ $(function () {
       '<p><em>' + data +
       ' is typing a message...' +
       '</em></p>'
-
   });
 
+
+  //Posting Chat messages in database.
   function databaseMessage(message) {
+    console.log(message)
     $.post('/api/messages/', message, function (data, err) {
       console.log(data)
     });
 
   }
+
+  //function getting Chat Logs from database.
+  function chatLogs() {
+
+    $.get('/api/messages/' + room, function (data, err) {
+      //looping through the database object
+      for (var i = 0; i < data.length; i++) {
+        output.innerHTML += '<p><strong>'
+          + data[i].user + ': </strong>' + data[i].message + '</p>';;
+      }
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+    });
+  }
+
+  // new topic modal
+  $('#topicBtn').on('click', function () {
+    $('#topicModal').modal('toggle')
+  });
 });
 
-// new topic modal
-$('#topicBtn').on('click', function () {
-  $('#topicModal').modal('toggle')
-})
+// new topic post
+
+
+      $("#dbTopic").on('click', function(){
+        let newTopic = {
+          title: $('#title').val().trim(),
+          description: $("#description").val().trim()
+        }
+        addTopic(newTopic)
+      });
+      function addTopic(newTopic){
+        console.log(newTopic)
+        $.post('/api/posts/', newTopic, function (data, err){
+          console.log(data);
+        })
+        topics()
+      };
+
+function topics(){
+  $.get('/api/posts/', function(data, err){
+    console.log(data)
+    for (var i = 0; i<data.length; i++){
+      $("#homeSubmenu").append("<li id='menuBar'><button class='roomName'>"+data[i].title+"</button></li>")
+    }
+  })
+}
+
+      

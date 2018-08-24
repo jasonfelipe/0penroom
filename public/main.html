@@ -15,8 +15,9 @@
     <link href="https://fonts.googleapis.com/css?family=Farsan" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/login.css">
+    <!-- <link rel="stylesheet" href="assets/css/about.css"> -->
     <link rel="stylesheet" href="assets/css/chat.css">
+    <link rel="stylesheet" href="assets/css/main.css">
 
 
     <!--Let browser know website is optimized for mobile-->
@@ -68,7 +69,7 @@
                 <!-- Sidebar Links -->
                 <ul class="list-unstyled components">
                     <li id="menuBar" class="active">
-                        <a href="#" class="font"><strong>About</strong></a>
+                        <a href="#" class="font" id=aboutLink>About</a>
                     </li>
                     <!-- <li><a href="#">About</a></li> -->
                     <hr>
@@ -81,13 +82,13 @@
                         <a id="menuBar" class="font" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"><strong>Topics</strong></a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
                             <li id="menuBar">
-                                <a href="#" class="font">Top 1</a>
+                                <button class='roomName'>Main</button>
                             </li>
                             <li id="menuBar">
-                                <a href="#" class="font">Top 2</a>
+                                <button class='roomName'>Test 2</button>
                             </li>
                             <li id="menuBar">
-                                <a href="#" class="font">Top 3</a>
+                                <button class='roomName'>Test 3</button>
                             </li>
                         </ul>
                         <hr>
@@ -135,17 +136,75 @@
         <!-- END OF CHAT BOX -->
     </div>
 
+
+    <div class="container" id=about-page>
+            <div class="row header-row">
+                <div class="col-sm-11 col-md-11 col-lg-11 header-div">
+                    <h1 class="about-h1">ABOUT</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3 col1">
+                    PIC - 4
+                    <img src="">
+                </div>
+                <div class="col-sm-8 col-md-8 col-lg-8 col1">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt dolorum quae necessitatibus labore expedita
+                        libero repudiandae adipisci, maiores voluptatum voluptas eos dolore, nostrum, iusto repellendus inventore
+                        quis at pariatur explicabo!</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3 col1">
+                    PIC - 4
+                    <img src="">
+                </div>
+                <div class="col-sm-8 col-md-8 col-lg-8 col1">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt dolorum quae necessitatibus labore expedita
+                        libero repudiandae adipisci, maiores voluptatum voluptas eos dolore, nostrum, iusto repellendus inventore
+                        quis at pariatur explicabo!</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3 col1">
+                    PIC - 4
+                    <img src="">
+                </div>
+                <div class="col-sm-8 col-md-8 col-lg-8 col1">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt dolorum quae necessitatibus labore expedita
+                        libero repudiandae adipisci, maiores voluptatum voluptas eos dolore, nostrum, iusto repellendus inventore
+                        quis at pariatur explicabo!</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3 col1">
+                    PIC - 4
+                    <img src="">
+                </div>
+                <div class="col-sm-8 col-md-8 col-lg-8 col1">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt dolorum quae necessitatibus labore expedita
+                        libero repudiandae adipisci, maiores voluptatum voluptas eos dolore, nostrum, iusto repellendus inventore
+                        quis at pariatur explicabo!</p>
+                </div>
+            </div>
+            <button id=closeAbout>Close</button>
+        </div>
+
+
+
+
+
     <!-- Modal -->
     <div class="modal fade" id="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
+            <div class="modal-content" id="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="registration">Registration Complete!</h5>
+                    <h5 class="modal-title" id="registration modal-title">Registration Complete!</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="modal-body">
                     You have successfully registered! Please login!
                 </div>
                 <div class="modal-footer">
@@ -178,7 +237,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" id="dbTopic" >Add Topic</button>
+              <button type="submit" class="btn btn-primary" id="dbTopic" >Add Topic</button>
             </div>
           </div>
         </div>
@@ -198,6 +257,7 @@
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 
     <!-- Custom Scripts -->
+    <script type="text/javascript" src='assets/js/about.js'></script>
     <script type="text/javascript" src='assets/js/login.js'></script>
     <script type="text/javascript" src='assets/js/register.js'></script>
     <script type="text/javascript" src="assets/js/chat.js"></script>
