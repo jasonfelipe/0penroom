@@ -123,7 +123,7 @@ $(function () {
       //looping through the database object
       for (var i = 0; i < data.length; i++) {
         output.innerHTML += '<p><strong>'
-          + data[i].user + ': </strong>' + data[i].message + '</p>';;
+        + data[i].user + ':</strong>' + data[i].message + '</p>';;
       }
       chatWindow.scrollTop = chatWindow.scrollHeight;
     });
