@@ -314,6 +314,12 @@ body {
   border-bottom: 1px solid rgb(77, 76, 76);
   height: 200px;
 }
+
+img {
+  width: 200px;
+  height: 200px;
+}
+
 /* =============== FOOTER  ============= */
 .about-ft {
   margin-top: 150px;
