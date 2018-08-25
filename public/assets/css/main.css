@@ -7,6 +7,10 @@ body{
     height: 45px;
 }
 
+button.close {
+  width: 50px;
+}
+
 button{
   color: #fff;
   font-size: 18px;
@@ -81,6 +85,10 @@ input{
   float: left;
 }
 
+#closeAbout {
+  background-color: #17a2b8;
+  color: white;
+}
 
 label{
   box-sizing: border-box;
