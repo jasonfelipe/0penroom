@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "P@ul0@gdlmys",
+    "password": "root",
     "database": "openroom",
     "host": "127.0.0.1",
     "port": 3306,

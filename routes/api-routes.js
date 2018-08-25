@@ -56,14 +56,18 @@ console.log(req.body.title)
     description: req.body.description
   }).then(function(newTopic){
     res.json(newTopic);
-  })
-})
-app.get("/api/posts", function (req,res){
+  }).catch(function (err){
+    console.log("Error creating Post")
+    res.send(err);
+  });
+});
+
+app.get("/api/posts", function (req, res){
   db.Post.findAll({})
   .then(function (grabT){
     res.json(grabT)
-  })
-})
+  });
+});
 
   //Creating Messages
   app.post("/api/messages", function (req, res) {

@@ -12,6 +12,12 @@ button{
   border-radius: 0 0 2px 2px;
 }
 
+button.close {
+  padding: 10px !important;
+  width: 40px; 
+
+}
+
 .center{
   margin-left: 40px;
 }

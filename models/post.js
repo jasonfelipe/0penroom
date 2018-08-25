@@ -5,6 +5,10 @@ module.exports = function(sequelize, DataTypes) {
       title: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: {
+          args: true,
+          msg: 'POST NAME IS ALREADY IN USE!'
+      },
         validate: {
           len: [1,140]
         }

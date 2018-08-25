@@ -26,6 +26,13 @@ $(function () {
   chatLogs();
   topics();
 
+  setInterval(topicsRefresh, 2000);
+
+
+  function topicsRefresh() {
+    topics();
+  }
+
   function topics() {
     $.get('/api/posts/', function (data, err) {
       console.log(data);
@@ -98,8 +105,6 @@ $(function () {
     //Using the function below to post into the database
     databaseMessage(newMessage);
     topics();
-    $("#output").empty()
-    chatLogs();
   });
 
 
@@ -160,30 +165,56 @@ $(function () {
 
   // new topic modal
   $('#topicBtn').on('click', function () {
+    $('.modal-title').html('Add A Topic!')
     $('#topicModal').modal('toggle')
   });
 
   // new topic post
   $("#dbTopic").on('click', function () {
+    let title = $('#title').val().trim(),
+      description = $("#description").val().trim()
     let newTopic = {
-      title: $('#title').val().trim(),
-      description: $("#description").val().trim()
+      title: title,
+      description: description
     }
-    addTopic(newTopic, function () {
-      $('#homeSubmenu').append("<li id='menuBar'><button class='roomName font'>" + newTopic.title + "</button></li>")
-    });
+
+    //Checking input, doesn't work if something is blank
+    if (title && description === "") {
+
+      $('.modal-title').html('ERROR!! <br> TITLE AND DESCRPTION REQUIRED');
+      console.log(title === "", description === "");
+
+    }
+    else {
+      $('#topicModal').modal('hide');
+      addTopic(newTopic);
+    }
   });
 
-  function addTopic(newTopic, cb) {
+
+  function addTopic(newTopic) {
     console.log(newTopic)
     $.post('/api/posts/', newTopic, function (data, err) {
       console.log(data);
-      topics();
+      if (data.name === 'SequelizeUniqueConstraintError') {
+        $('#modal-content').css('color', 'red');
+        $('.modal-title').html('ERROR!')
+        $('#modal-body').html('POST ALREADY EXISTS!');
+        $('#modal').modal('toggle');
+      }
+
+      else {
+        $('#modal-content').css('color', 'black');
+        $('.modal-title').html('Topic Successfully Added!');
+        $('#modal-body').html('Check the Topics tab and go Chat!')
+        $('#modal').modal('toggle');
+        topics();
+      }
     });
-    cb();
   };
+});
 
 
 
 
-});   
+
