@@ -42,13 +42,13 @@ $(function () {
       }
       $('.roomName').on('click', function () {
         console.log('Check current Room: ' + room);
-
         //resets chatbox
         output.innerHTML = ""
 
         console.log("ROOM -->" + $(this)[0].innerHTML);
 
         newRoom = $(this)[0].innerHTML; //switching the variables
+        $('#channel-name').html(newRoom);
 
         console.log('Welcome to Topic:' + newRoom); //sending the subscribe to the server aka pls join this room.
 
@@ -65,7 +65,7 @@ $(function () {
 
   //Switching Rooms
   $('.roomName').on('click', function () {
-    console.log(this)
+    console.log('HELLO?')
     console.log('Check current Room: ' + room);
 
     //resets chatbox
@@ -75,6 +75,7 @@ $(function () {
 
     newRoom = $(this)[0].innerHTML; //switching the variables
 
+    console.log('testing saving')
     $('#topic-title').html(newRoom);
 
     console.log('Welcome to Topic:' + newRoom); //sending the subscribe to the server aka pls join this room.
@@ -125,8 +126,8 @@ $(function () {
     message.innerHTML = ''; //resets our message input?
 
     //Puts the message out into the HTML
-    output.innerHTML += '<p><strong>'
-      + data.name + ': </strong>' + data.message + '</p>';
+    $('#output').append('<div id=output-box><span><strong>'
+      + data.name + ':</strong></span>' + '<p>' + data.message + '</p></div>');
 
     //puts chat to the bottom of window when new message pops up
     chatWindow.scrollTop = chatWindow.scrollHeight;
@@ -138,7 +139,10 @@ $(function () {
     feedback.innerHTML =
       '<p><em>' + data +
       ' is typing a message...' +
-      '</em></p>'
+      '</em></p>';
+
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+
   });
 
 
@@ -157,8 +161,8 @@ $(function () {
     $.get('/api/messages/' + room, function (data, err) {
       //looping through the database object
       for (var i = 0; i < data.length; i++) {
-        output.innerHTML += '<p><strong>'
-          + data[i].user + ': </strong>' + data[i].message + '</p>';;
+        $('#output').append('<div id=output-box><span><strong>'
+        + data[i].user + ':</strong></span>' + '<p>' + data[i].message + '</p></div>');
       }
       chatWindow.scrollTop = chatWindow.scrollHeight;
     });

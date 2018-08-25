@@ -120,13 +120,13 @@
         
         <!-- THE WHOLE CHAT BOX -->
         <div class="container" id="chat-box">
-            <div id='topic-title'>MAIN</div>
+            <div  id='topic-title'>CHANNEL: <span id='channel-name'>MAIN</span></div>
             <!-- THIS IS THE WINDOW -->
             <div class="row" id="chat-window">
                 <!-- Where all the messages get created DYNAMICALLY-->
                 <div class="row" id="output"></div>
                 <!-- Shows if a user is typing -->
-
+                <div class='row' id='feedback'></div>
             </div>
 
             <!-- Place for username -->
@@ -134,7 +134,6 @@
             <!-- Message Input -->
             <input id='message' type='text' placeholder='Type your message here...' />
             <button class='btn btn-secondary btn-sm' id='send-message'>Send</button>
-            <div class='row' id='feedback'></div>
         </div>
 
         <!-- END OF CHAT BOX -->
