@@ -20,6 +20,16 @@ button{
   border-radius: 0 0 2px 2px;
 }
 
+#topic-title{
+  margin: 0 auto;
+  border-radius: 25px;
+  width: 90%;  
+  background-color: #17a2b8;
+  color: white;
+  text-align: center;
+}
+
+
 .center{
   margin-left: 40px;
 }

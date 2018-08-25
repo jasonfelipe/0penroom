@@ -41,7 +41,6 @@ $(function () {
         $("#homeSubmenu").append("<li id='menuBar'><button class='roomName'>" + data[i].title + "</button></li>")
       }
       $('.roomName').on('click', function () {
-        console.log(this)
         console.log('Check current Room: ' + room);
 
         //resets chatbox
@@ -75,6 +74,8 @@ $(function () {
     console.log("ROOM -->" + $(this)[0].innerHTML);
 
     newRoom = $(this)[0].innerHTML; //switching the variables
+
+    $('#topic-title').html(newRoom);
 
     console.log('Welcome to Topic:' + newRoom); //sending the subscribe to the server aka pls join this room.
 
